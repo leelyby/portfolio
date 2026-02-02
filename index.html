@@ -42,11 +42,20 @@
     </p>
   </section>
 
-  <!-- WORKS -->
-  <section id="works" class="section">
-    <h2 class="reveal">WORKS</h2>
+<section id="works" class="section">
+  <h2 class="reveal">WORKS</h2>
 
-    <a href="project.html" class="project reveal">
+  <!-- 카테고리 탭 -->
+  <div class="works-tabs reveal">
+    <button class="tab active" data-filter="all">ALL</button>
+    <button class="tab" data-filter="web">WEB</button>
+    <button class="tab" data-filter="system">SYSTEM</button>
+  </div>
+
+  <!-- 프로젝트 리스트 -->
+  <div class="works-list">
+
+    <a href="project.html" class="project reveal" data-category="web">
       <img src="images/project1.jpg" alt="Project 01" class="project-img">
       <div class="project-text">
         <h3>Project 01</h3>
@@ -54,14 +63,17 @@
       </div>
     </a>
 
-    <a href="project.html" class="project reveal">
+    <a href="project.html" class="project reveal" data-category="system">
       <img src="images/project2.jpg" alt="Project 02" class="project-img">
       <div class="project-text">
         <h3>Project 02</h3>
         <p>콘텐츠 자동화 시스템</p>
       </div>
     </a>
-  </section>
+
+  </div>
+</section>
+
 
   <!-- CONTACT -->
   <footer id="contact" class="footer reveal">

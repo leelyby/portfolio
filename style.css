@@ -1,110 +1,173 @@
-@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
-
+/* =====================
+   기본 리셋
+===================== */
 * {
-  margin: 0;
   box-sizing: border-box;
-  font-family: Pretendard, sans-serif;
 }
 
 body {
-  background: #0f0f0f;
-  color: #eaeaea;
-  display: flex;
+  margin: 0;
+  font-family: 'Pretendard', sans-serif;
+  background: #fff;
+  color: #111;
 }
 
-/* SIDEBAR */
+/* =====================
+   모바일 메뉴 버튼
+===================== */
+.menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* =====================
+   사이드바
+===================== */
 .sidebar {
-  width: 200px;
-  height: 100vh;
   position: fixed;
-  padding: 40px;
+  left: 0;
+  top: 0;
+  width: 220px;
+  height: 100vh;
+  padding: 40px 20px;
+  background: #fff;
+  border-right: 1px solid #eee;
+  z-index: 1000;
+}
+
+.sidebar h2 {
+  font-size: 16px;
+  margin-bottom: 30px;
 }
 
 .sidebar ul {
   list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  margin-bottom: 16px;
 }
 
 .sidebar a {
-  color: #aaa;
   text-decoration: none;
-  display: block;
-  margin-bottom: 20px;
+  color: #111;
 }
 
-/* MAIN */
+/* =====================
+   메인 레이아웃
+===================== */
 main {
-  margin-left: 200px;
-  width: calc(100% - 200px);
+  margin-left: 220px;
+  padding: 40px;
 }
 
-/* HERO */
-.hero {
-  height: 100vh;
-  padding: 80px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+/* =====================
+   HERO
+===================== */
+.hero .small {
+  font-size: 12px;
+  letter-spacing: 0.15em;
 }
 
 .hero h1 {
-  font-size: clamp(56px, 8vw, 100px);
+  font-size: clamp(36px, 5vw, 64px);
+  margin: 12px 0;
 }
 
 .hero h2 {
   font-size: clamp(20px, 2.2vw, 28px);
   font-weight: 400;
-  margin-top: 16px;
-  color: #bdbdbd;
-}
-
-.small {
-  font-size: 12px;
-  letter-spacing: 2px;
   color: #888;
+  margin: 0;
 }
 
-/* SECTION */
+.subtitle {
+  margin-top: 12px;
+  font-size: 14px;
+  color: #555;
+}
+
+/* =====================
+   SECTION 공통
+===================== */
 .section {
-  padding: 120px 80px;
-  max-width: 900px;
+  margin-top: 120px;
 }
 
 .section h2 {
-  margin-bottom: 40px;
+  font-size: 24px;
+  margin-bottom: 20px;
 }
 
-/* PROJECT */
+/* =====================
+   WORKS (🔥 수정 핵심)
+===================== */
+#works {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+  margin-top: 40px;
+}
+
+/* 프로젝트 카드 */
 .project {
-  display: flex;
-  gap: 32px;
-  padding: 40px 0;
-  border-bottom: 1px solid #222;
+  display: block;
   text-decoration: none;
   color: inherit;
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden; /* ⭐ 이미지 튀어나옴 방지 */
 }
 
+/* 이미지 */
 .project-img {
-  width: 160px;
-  height: 100px;
+  width: 100%;
+  height: 260px;
   object-fit: cover;
-  border-radius: 6px;
-  flex-shrink: 0;
+  display: block;
+  transition: transform 0.5s ease;
 }
 
-.project-text h3 {
-  margin-bottom: 6px;
+/* hover 시 이미지 줌 */
+.project:hover .project-img {
+  transform: scale(1.08);
 }
 
-/* FOOTER */
-.footer {
-  padding: 80px;
+/* 텍스트 */
+.project-text {
+  padding: 16px;
+}
+
+.project h3 {
+  margin: 0 0 6px;
+  font-size: 18px;
+}
+
+.project p {
+  margin: 0;
+  font-size: 14px;
   color: #666;
 }
 
-/* SCROLL */
+/* =====================
+   FOOTER
+===================== */
+.footer {
+  margin-top: 120px;
+  font-size: 14px;
+  color: #666;
+}
+
+/* =====================
+   REVEAL 애니메이션
+===================== */
 .reveal {
   opacity: 0;
-  transform: translateY(40px);
+  transform: translateY(30px);
   transition: 0.8s ease;
 }
 
@@ -113,56 +176,94 @@ main {
   transform: translateY(0);
 }
 
-/* MOBILE */
-.menu-btn {
-  display: none;
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 1001;
-  font-size: 24px;
-  background: none;
-  border: none;
-  color: #fff;
-}
-
+/* =====================
+   모바일 반응형
+===================== */
 @media (max-width: 768px) {
 
-  body {
+  .menu-btn {
     display: block;
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    z-index: 2000;
   }
 
   .sidebar {
-    left: -100%;
+    transform: translateX(-100%);
     transition: 0.3s;
-    background: #0f0f0f;
   }
 
   .sidebar.active {
-    left: 0;
+    transform: translateX(0);
   }
 
   main {
     margin-left: 0;
-    width: 100%;
+    padding: 24px;
   }
 
-  .menu-btn {
-    display: block;
-  }
-
-  .hero,
-  .section,
-  .footer {
-    padding: 80px 24px;
-  }
-
-  .project {
-    flex-direction: column;
+  #works {
+    gap: 24px;
   }
 
   .project-img {
-    width: 100%;
     height: 180px;
+  }
+
+  /* 모바일에서는 줌 약하게 */
+  .project:hover .project-img {
+    transform: scale(1.03);
+  }
+}
+/* =====================
+   WORKS - 왼쪽 정렬 + 카테고리
+===================== */
+
+#works {
+  text-align: left;
+}
+
+/* 카테고리 탭 */
+.works-tabs {
+  display: flex;
+  gap: 24px;
+  margin: 24px 0 40px;
+}
+
+.tab {
+  background: none;
+  border: none;
+  font-size: 14px;
+  color: #999;
+  cursor: pointer;
+  padding: 0;
+}
+
+.tab.active {
+  color: #111;
+  font-weight: 600;
+}
+
+/* 프로젝트 리스트 (왼쪽 정렬 핵심) */
+.works-list {
+  display: grid;
+  grid-template-columns: 1fr; /* ⭐ 항상 한 줄 */
+  gap: 48px;
+}
+
+/* 프로젝트 카드 */
+.project {
+  max-width: 640px; /* kwy 느낌 */
+}
+
+/* 모바일 */
+@media (max-width: 768px) {
+  .project {
+    max-width: 100%;
+  }
+
+  .works-tabs {
+    gap: 16px;
   }
 }

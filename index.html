@@ -4,18 +4,16 @@
   <meta charset="UTF-8" />
   <title>김정휘 | Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- CSS 연결 -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<!-- 모바일 햄버거 메뉴 버튼 -->
+<!-- 모바일 메뉴 버튼 -->
 <button class="menu-btn">☰</button>
 
-<!-- 좌측 고정 메뉴 -->
+<!-- 좌측 메뉴 -->
 <nav class="sidebar">
-  <h2>JH</h2>
+  <h2>Today Design</h2>
   <ul>
     <li><a href="#home">HOME</a></li>
     <li><a href="#about">ABOUT</a></li>
@@ -24,13 +22,14 @@
   </ul>
 </nav>
 
-<!-- 메인 콘텐츠 -->
+<!-- 메인 -->
 <main>
 
   <!-- HOME -->
   <section id="home" class="hero reveal">
     <span class="small">PORTFOLIO</span>
-    <h1>김정휘</h1>
+    <h1>오늘의 디자인/오.디</h1>
+    <h2>for your needs</h2>
     <p class="subtitle">Simple · Practical · Clean</p>
   </section>
 
@@ -48,13 +47,19 @@
     <h2 class="reveal">WORKS</h2>
 
     <a href="project.html" class="project reveal">
-      <h3>Project 01</h3>
-      <p>포트폴리오 웹사이트 제작</p>
+      <img src="images/project1.jpg" alt="Project 01" class="project-img">
+      <div class="project-text">
+        <h3>Project 01</h3>
+        <p>포트폴리오 웹사이트 제작</p>
+      </div>
     </a>
 
     <a href="project.html" class="project reveal">
-      <h3>Project 02</h3>
-      <p>콘텐츠 자동화 시스템</p>
+      <img src="images/project2.jpg" alt="Project 02" class="project-img">
+      <div class="project-text">
+        <h3>Project 02</h3>
+        <p>콘텐츠 자동화 시스템</p>
+      </div>
     </a>
   </section>
 
@@ -65,8 +70,6 @@
 
 </main>
 
-<!-- JS 연결 -->
 <script src="script.js"></script>
-
 </body>
 </html>

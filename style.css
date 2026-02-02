@@ -18,11 +18,6 @@ body {
   height: 100vh;
   position: fixed;
   padding: 40px;
-  background: #0f0f0f;
-}
-
-.sidebar h2 {
-  margin-bottom: 40px;
 }
 
 .sidebar ul {
@@ -42,6 +37,7 @@ main {
   width: calc(100% - 200px);
 }
 
+/* HERO */
 .hero {
   height: 100vh;
   padding: 80px;
@@ -54,17 +50,49 @@ main {
   font-size: clamp(56px, 8vw, 100px);
 }
 
+.hero h2 {
+  font-size: clamp(20px, 2.2vw, 28px);
+  font-weight: 400;
+  margin-top: 16px;
+  color: #bdbdbd;
+}
+
+.small {
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: #888;
+}
+
+/* SECTION */
 .section {
   padding: 120px 80px;
   max-width: 900px;
 }
 
+.section h2 {
+  margin-bottom: 40px;
+}
+
+/* PROJECT */
 .project {
-  display: block;
+  display: flex;
+  gap: 32px;
   padding: 40px 0;
   border-bottom: 1px solid #222;
-  color: inherit;
   text-decoration: none;
+  color: inherit;
+}
+
+.project-img {
+  width: 160px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.project-text h3 {
+  margin-bottom: 6px;
 }
 
 /* FOOTER */
@@ -73,7 +101,7 @@ main {
   color: #666;
 }
 
-/* SCROLL ANIMATION */
+/* SCROLL */
 .reveal {
   opacity: 0;
   transform: translateY(40px);
@@ -83,4 +111,58 @@ main {
 .reveal.active {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* MOBILE */
+.menu-btn {
+  display: none;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1001;
+  font-size: 24px;
+  background: none;
+  border: none;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+
+  body {
+    display: block;
+  }
+
+  .sidebar {
+    left: -100%;
+    transition: 0.3s;
+    background: #0f0f0f;
+  }
+
+  .sidebar.active {
+    left: 0;
+  }
+
+  main {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .menu-btn {
+    display: block;
+  }
+
+  .hero,
+  .section,
+  .footer {
+    padding: 80px 24px;
+  }
+
+  .project {
+    flex-direction: column;
+  }
+
+  .project-img {
+    width: 100%;
+    height: 180px;
+  }
 }

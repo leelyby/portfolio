@@ -267,3 +267,82 @@ main {
     gap: 16px;
   }
 }
+@media (max-width: 768px) {
+
+  /* 사이드바 초기 상태: 완전 숨김 */
+  .sidebar {
+    position: fixed;
+    inset: 0;
+    background: #111;
+    color: #fff;
+    padding: 80px 24px;
+    transform: translateX(100%);
+    transition: transform 0.35s ease;
+    z-index: 3000;
+  }
+
+  .sidebar.active {
+    transform: translateX(0);
+  }
+
+  .sidebar h2 {
+    font-size: 32px;
+    margin-bottom: 40px;
+    line-height: 1.2;
+  }
+
+  .sidebar a {
+    color: #aaa;
+    font-size: 20px;
+  }
+
+  .sidebar li {
+    margin-bottom: 24px;
+  }
+
+  /* 메인 영역 밀림 방지 */
+  main {
+    margin-left: 0;
+  }
+}
+@media (max-width: 768px) {
+
+  .works-list {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .project {
+    max-width: 100%;
+  }
+
+  .project-img {
+    height: 200px;
+  }
+}
+@media (max-width: 768px) {
+
+  .hero h1 {
+    font-size: 34px;
+    line-height: 1.2;
+  }
+
+  .hero h2 {
+    font-size: 18px;
+    margin-top: 8px;
+  }
+
+  .subtitle {
+    font-size: 13px;
+  }
+}
+@media (max-width: 768px) {
+  .menu-btn {
+    position: fixed;
+    top: 18px;
+    right: 18px;
+    z-index: 4000;
+    color: #fff;
+  }
+}

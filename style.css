@@ -346,3 +346,37 @@ main {
     color: #fff;
   }
 }
+@media (max-width: 768px) {
+
+  .menu-btn {
+    position: fixed;
+    top: 16px;
+    right: 20px;
+    z-index: 5000;
+  }
+
+  /* WORKS / PORTFOLIO 타이틀 상단 여백 확보 */
+  .works,
+  .portfolio {
+    padding-top: 80px;
+  }
+}
+.about,
+.portfolio {
+  padding-top: 0;
+}
+
+.about img,
+.portfolio img {
+  margin-bottom: 0;
+}
+/* ABOUT / PORTFOLIO 텍스트 제거 */
+.about p,
+.about h2,
+.portfolio p,
+.portfolio h2,
+.portfolio .desc,
+.project .text,
+.project .description {
+  display: none;
+}

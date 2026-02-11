@@ -1,40 +1,45 @@
-// 모바일 메뉴
-const menuBtn = document.querySelector('.menu-btn');
-const sidebar = document.querySelector('.sidebar');
-
-menuBtn.addEventListener('click', () => {
-  sidebar.classList.toggle('active');
+/* AOS */
+AOS.init({
+  duration:1000,
+  once:true
 });
 
-// reveal 애니메이션
-const reveals = document.querySelectorAll('.reveal');
-
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('active');
-    }
-  });
+/* GSAP HERO 애니메이션 */
+gsap.from(".hero-title",{
+  y:80,
+  opacity:0,
+  duration:1.2,
+  ease:"power3.out"
 });
 
-reveals.forEach(el => observer.observe(el));
-// WORKS 카테고리 필터
-const tabs = document.querySelectorAll('.tab');
-const projects = document.querySelectorAll('.project');
+gsap.from(".hero-sub",{
+  y:40,
+  opacity:0,
+  duration:1,
+  delay:0.5
+});
 
-tabs.forEach(tab => {
-  tab.addEventListener('click', () => {
-    tabs.forEach(t => t.classList.remove('active'));
-    tab.classList.add('active');
+/* 다크모드 */
+const toggleBtn = document.getElementById("darkToggle");
 
-    const filter = tab.dataset.filter;
+if(localStorage.getItem("theme") === "dark"){
+  document.body.classList.add("dark");
+}
 
-    projects.forEach(project => {
-      if (filter === 'all' || project.dataset.category === filter) {
-        project.style.display = 'block';
-      } else {
-        project.style.display = 'none';
-      }
-    });
-  });
+toggleBtn.addEventListener("click",()=>{
+  document.body.classList.toggle("dark");
+
+  if(document.body.classList.contains("dark")){
+    localStorage.setItem("theme","dark");
+  }else{
+    localStorage.setItem("theme","light");
+  }
+});
+
+/* 모바일 메뉴 */
+const menuToggle = document.getElementById("menuToggle");
+const nav = document.getElementById("navMenu");
+
+menuToggle.addEventListener("click",()=>{
+  nav.classList.toggle("active");
 });

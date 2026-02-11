@@ -1,87 +1,101 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <title>김정휘 | Portfolio</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Premium Portfolio</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Pretendard:wght@300;400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+
+<!-- AOS -->
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+<!-- GSAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 </head>
+
 <body>
 
-<!-- 모바일 메뉴 버튼 -->
-<button class="menu-btn">☰</button>
+<header id="header">
+  <div class="logo">JW</div>
 
-<!-- 좌측 메뉴 -->
-<nav class="sidebar">
-  <h2>Today Design</h2>
-  <ul>
-    <li><a href="#home">HOME</a></li>
-    <li><a href="#about">ABOUT</a></li>
-    <li><a href="#works">WORKS</a></li>
-    <li><a href="#contact">CONTACT</a></li>
-  </ul>
-</nav>
-
-<!-- 메인 -->
-<main>
-
-  <!-- HOME -->
-  <section id="home" class="hero reveal">
-    <span class="small">PORTFOLIO</span>
-    <h1>오늘의 디자인/오.디</h1>
-    <h2>for your needs</h2>
-    <p class="subtitle">Simple · Practical · Clean</p>
-  </section>
-
-  <!-- ABOUT -->
-  <section id="about" class="section reveal">
-    <h2>ABOUT</h2>
-    <p>
-      결과 중심으로 작업합니다.<br>
-      불필요한 요소는 제거하고 핵심만 남깁니다.
-    </p>
-  </section>
-
-<section id="works" class="section">
-  <h2 class="reveal">WORKS</h2>
-
-  <!-- 카테고리 탭 -->
-  <div class="works-tabs reveal">
-    <button class="tab active" data-filter="all">ALL</button>
-    <button class="tab" data-filter="web">WEB</button>
-    <button class="tab" data-filter="system">SYSTEM</button>
+  <div class="right-menu">
+    <button id="darkToggle">🌙</button>
+    <div class="menu-toggle" id="menuToggle">☰</div>
   </div>
 
-  <!-- 프로젝트 리스트 -->
-  <div class="works-list">
+  <nav id="navMenu">
+    <ul>
+      <li><a href="#home">HOME</a></li>
+      <li><a href="#about">ABOUT</a></li>
+      <li><a href="#portfolio">WORK</a></li>
+      <li><a href="#contact">CONTACT</a></li>
+    </ul>
+  </nav>
+</header>
 
-    <a href="project.html" class="project reveal" data-category="web">
-      <img src="images/project1.jpg" alt="Project 01" class="project-img">
-      <div class="project-text">
-        <h3>Project 01</h3>
-        <p>포트폴리오 웹사이트 제작</p>
-      </div>
-    </a>
-
-    <a href="project.html" class="project reveal" data-category="system">
-      <img src="images/project2.jpg" alt="Project 02" class="project-img">
-      <div class="project-text">
-        <h3>Project 02</h3>
-        <p>콘텐츠 자동화 시스템</p>
-      </div>
-    </a>
-
+<!-- HERO -->
+<section id="home" class="fullscreen">
+  <div class="hero-content">
+    <h1 class="hero-title">Creative Direction & Visual Design</h1>
+    <p class="hero-sub">Premium Digital Portfolio</p>
   </div>
 </section>
 
+<!-- ABOUT -->
+<section id="about">
+  <div class="inner" data-aos="fade-up">
+    <h2>About</h2>
+    <p>브랜드의 본질을 시각화하는 작업을 합니다.</p>
+  </div>
+</section>
 
-  <!-- CONTACT -->
-  <footer id="contact" class="footer reveal">
-    <p>Email · example@email.com</p>
-  </footer>
+<!-- WORK -->
+<section id="portfolio">
+  <div class="inner">
+    <h2 data-aos="fade-up">Selected Works</h2>
 
-</main>
+    <div class="work-grid">
 
+      <div class="work-card">
+        <img src="https://picsum.photos/800/1000?1">
+        <div class="work-info">
+          <h3>Brand Identity</h3>
+          <p>2026</p>
+        </div>
+      </div>
+
+      <div class="work-card">
+        <img src="https://picsum.photos/800/1000?2">
+        <div class="work-info">
+          <h3>Editorial Design</h3>
+          <p>2026</p>
+        </div>
+      </div>
+
+      <div class="work-card">
+        <img src="https://picsum.photos/800/1000?3">
+        <div class="work-info">
+          <h3>Campaign Visual</h3>
+          <p>2025</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="inner" data-aos="fade-up">
+    <h2>Contact</h2>
+    <p>hello@email.com</p>
+  </div>
+</section>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 <script src="script.js"></script>
 </body>
 </html>

@@ -44,3 +44,28 @@ overlay.addEventListener("click",closeMenuFunc);
 document.querySelectorAll("#navMenu a").forEach(link=>{
   link.addEventListener("click",closeMenuFunc);
 });
+const modal = document.getElementById("imageModal");
+const modalImg = document.getElementById("modalImage");
+const closeBtn = document.querySelector(".modal-close");
+
+document.querySelectorAll(".portfolio-link").forEach(item => {
+  item.addEventListener("click", function(e){
+    e.preventDefault();
+    const imgSrc = this.getAttribute("data-img");
+    modalImg.src = imgSrc;
+    modal.classList.add("active");
+    document.body.style.overflow = "hidden";
+  });
+});
+
+closeBtn.addEventListener("click", function(){
+  modal.classList.remove("active");
+  document.body.style.overflow = "auto";
+});
+
+modal.addEventListener("click", function(e){
+  if(e.target === modal){
+    modal.classList.remove("active");
+    document.body.style.overflow = "auto";
+  }
+});

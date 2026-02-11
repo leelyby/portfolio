@@ -297,13 +297,3 @@ section{
     padding:120px 20px;
   }
 }
-.contact-center{
-  text-align:center;
-}
-
-/* PC에서 X 버튼 숨김 */
-@media(min-width:769px){
-  .close-btn{
-    display:none;
-  }
-}

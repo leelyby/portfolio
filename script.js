@@ -1,37 +1,49 @@
-AOS.init();
-
-/* ================= 모바일 메뉴 ================= */
-
-const menuToggle = document.getElementById("menuToggle");
-const navMenu = document.getElementById("navMenu");
-const closeMenuBtn = document.getElementById("closeMenu");
-const overlay = document.getElementById("menuOverlay");
-
-menuToggle.addEventListener("click", () => {
-  navMenu.classList.add("active");
-  overlay.classList.add("active");
+AOS.init({
+  duration:1000,
+  once:true
 });
 
-closeMenuBtn.addEventListener("click", closeMenu);
-overlay.addEventListener("click", closeMenu);
+/* GSAP */
+gsap.from(".hero-title",{y:80,opacity:0,duration:1});
+gsap.from(".hero-sub",{y:40,opacity:0,duration:1,delay:0.4});
 
-function closeMenu(){
-  navMenu.classList.remove("active");
+/* 다크모드 */
+const toggleBtn = document.getElementById("darkToggle");
+
+if(localStorage.getItem("theme")==="dark"){
+  document.body.classList.add("dark");
+}
+
+toggleBtn.addEventListener("click",()=>{
+  document.body.classList.toggle("dark");
+  localStorage.setItem("theme",
+    document.body.classList.contains("dark")?"dark":"light"
+  );
+});
+
+/* 모바일 메뉴 */
+const menuToggle=document.getElementById("menuToggle");
+const nav=document.getElementById("navMenu");
+const closeMenu=document.getElementById("closeMenu");
+const overlay=document.getElementById("menuOverlay");
+
+function openMenu(){
+  nav.classList.add("active");
+  overlay.classList.add("active");
+}
+
+function closeMenuFunc(){
+  nav.classList.remove("active");
   overlay.classList.remove("active");
 }
 
-/* 모바일에서 메뉴 클릭 시 닫히게 */
-document.querySelectorAll("#navMenu a").forEach(link => {
-  link.addEventListener("click", () => {
-    if(window.innerWidth <= 768){
-      closeMenu();
-    }
-  });
+menuToggle.addEventListener("click",openMenu);
+closeMenu.addEventListener("click",closeMenuFunc);
+overlay.addEventListener("click",closeMenuFunc);
+
+document.querySelectorAll("#navMenu a").forEach(link=>{
+  link.addEventListener("click",closeMenuFunc);
 });
-
-
-/* ================= 모달 ================= */
-
 const modal = document.getElementById("imageModal");
 const modalImg = document.getElementById("modalImage");
 const closeBtn = document.querySelector(".modal-close");
@@ -39,20 +51,46 @@ const closeBtn = document.querySelector(".modal-close");
 document.querySelectorAll(".portfolio-link").forEach(item => {
   item.addEventListener("click", function(e){
     e.preventDefault();
-    modalImg.src = this.getAttribute("data-img");
+    const imgSrc = this.getAttribute("data-img");
+    modalImg.src = imgSrc;
     modal.classList.add("active");
     document.body.style.overflow = "hidden";
   });
 });
 
-closeBtn.addEventListener("click", closeModal);
-modal.addEventListener("click", function(e){
-  if(e.target === modal){
-    closeModal();
-  }
-});
-
-function closeModal(){
+closeBtn.addEventListener("click", function(){
   modal.classList.remove("active");
   document.body.style.overflow = "auto";
-}
+});
+
+modal.addEventListener("click", function(e){
+  if(e.target === modal){
+    modal.classList.remove("active");
+    document.body.style.overflow = "auto";
+  }
+});
+const modal = document.getElementById("imageModal");
+const modalImg = document.getElementById("modalImage");
+const closeBtn = document.querySelector(".modal-close");
+
+document.querySelectorAll(".portfolio-link").forEach(item => {
+  item.addEventListener("click", function(e){
+    e.preventDefault();
+    const imgSrc = this.getAttribute("data-img");
+    modalImg.src = imgSrc;
+    modal.classList.add("active");
+    document.body.style.overflow = "hidden";
+  });
+});
+
+closeBtn.addEventListener("click", function(){
+  modal.classList.remove("active");
+  document.body.style.overflow = "auto";
+});
+
+modal.addEventListener("click", function(e){
+  if(e.target === modal){
+    modal.classList.remove("active");
+    document.body.style.overflow = "auto";
+  }
+});

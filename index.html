@@ -1,76 +1,180 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LEELY Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Premium Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 </head>
+
 <body>
 
 <header>
-  <div class="logo">LEELY</div>
+  <div class="logo">T'D 오늘의디자인</div>
 
-  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+  <div class="right-menu">
+    <button id="darkToggle">🌙</button>
+    <div class="menu-toggle" id="menuToggle">☰</div>
+  </div>
 
-  <nav id="nav">
+  <nav id="navMenu">
+    <div class="close-btn" id="closeMenu">✕</div>
     <ul>
-      <li><a href="#portfolio" onclick="closeMenu()">Selected Works</a></li>
-      <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+      <li><a href="#home">HOME</a></li>
+      <li><a href="#about">ABOUT</a></li>
+      <li><a href="#portfolio">WORK</a></li>
+      <li><a href="#contact">CONTACT</a></li>
     </ul>
   </nav>
 </header>
 
+<div id="menuOverlay"></div>
+
+<!-- HERO -->
+<section id="home" class="fullscreen">
+  <div class="hero-content">
+    <h1 class="hero-title">Creative Direction & Visual Design</h1>
+    <p class="hero-sub">Premium Digital Portfolio</p>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="inner" data-aos="fade-up">
+    <h2>About</h2>
+    <p>브랜드의 본질을 시각화하는 작업을 합니다.</p>
+  </div>
+</section>
 
 <!-- PORTFOLIO -->
 <section id="portfolio">
   <div class="inner">
-    <h2 class="center-title">Selected Works</h2>
+    <h2 class="center-title" data-aos="fade-up">Selected Works</h2>
 
     <div class="work-grid">
 
-      <!-- 기존 2열 그리드 유지 + 모달 연결 -->
+      <!-- 16개 썸네일 (정사각형 + 모달 연결) -->
 
-      <div class="work-card" onclick="openModal('images/portfolio1.jpg')">
+      <a href="#" class="work-card portfolio-link" data-img="images/portfolio1_big.jpg">
         <img src="images/portfolio1.jpg" alt="">
-      </div>
+      </a>
 
-      <div class="work-card" onclick="openModal('images/portfolio2.jpg')">
+      <a href="#" class="work-card portfolio-link" data-img="images/portfolio2_big.jpg">
         <img src="images/portfolio2.jpg" alt="">
-      </div>
+      </a>
 
-      <div class="work-card" onclick="openModal('images/portfolio3.jpg')">
+      <a href="#" class="work-card portfolio-link" data-img="images/portfolio3_big.jpg">
         <img src="images/portfolio3.jpg" alt="">
-      </div>
+      </a>
 
-      <div class="work-card" onclick="openModal('images/portfolio4.jpg')">
+      <a href="#" class="work-card portfolio-link" data-img="images/portfolio4_big.jpg">
         <img src="images/portfolio4.jpg" alt="">
-      </div>
+      </a>
 
-      <!-- 필요한 만큼 계속 추가 (총 16개 가능) -->
+      <a href="#" class="work-card portfolio-link" data-img="images/portfolio5_big.jpg">
+        <img src="images/portfolio5.jpg" alt="">
+      </a>
+
+      <a href="#" class="work-card portfolio-link" data-img="images/portfolio6_big.jpg">
+        <img src="images/portfolio6.jpg" alt="">
+      </a>
+
+      <a href="#" class="work-card portfolio-link" data-img="images/portfolio7_big.jpg">
+        <img src="images/portfolio7.jpg" alt="">
+      </a>
+
+      <a href="#" class="work-card portfolio-link" data-img="images/portfolio8_big.jpg">
+        <img src="images/portfolio8.jpg" alt="">
+      </a>
+
+      <a href="#" class="work-card portfolio-link" data-img="images/portfolio9_big.jpg">
+        <img src="images/portfolio9.jpg" alt="">
+      </a>
+
+      <a href="#" class="work-card portfolio-link" data-img="images/portfolio10_big.jpg">
+        <img src="images/portfolio10.jpg" alt="">
+      </a>
+
+      <a href="#" class="work-card portfolio-link" data-img="images/portfolio11_big.jpg">
+        <img src="images/portfolio11.jpg" alt="">
+      </a>
+
+      <a href="#" class="work-card portfolio-link" data-img="images/portfolio12_big.jpg">
+        <img src="images/portfolio12.jpg" alt="">
+      </a>
+
+      <a href="#" class="work-card portfolio-link" data-img="images/portfolio13_big.jpg">
+        <img src="images/portfolio13.jpg" alt="">
+      </a>
+
+      <a href="#" class="work-card portfolio-link" data-img="images/portfolio14_big.jpg">
+        <img src="images/portfolio14.jpg" alt="">
+      </a>
+
+      <a href="#" class="work-card portfolio-link" data-img="images/portfolio15_big.jpg">
+        <img src="images/portfolio15.jpg" alt="">
+      </a>
+
+      <a href="#" class="work-card portfolio-link" data-img="images/portfolio16_big.jpg">
+        <img src="images/portfolio16.jpg" alt="">
+      </a>
 
     </div>
   </div>
 </section>
 
-
 <!-- CONTACT -->
 <section id="contact">
-  <div class="inner contact-center">
-    <h2 class="center-title">Contact</h2>
-    <p>leely@email.com</p>
+  <div class="inner" data-aos="fade-up">
+    <h2>Contact</h2>
+    <p>hello@email.com</p>
   </div>
 </section>
 
-
-<!-- MODAL -->
-<div class="image-modal" id="modal" onclick="closeModal()">
+<!-- IMAGE MODAL -->
+<div id="imageModal" class="image-modal">
+  <span class="modal-close">&times;</span>
   <div class="modal-content-wrap">
-    <img id="modal-img" class="modal-img">
+    <img id="modalImage" class="modal-img">
   </div>
 </div>
 
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+AOS.init();
+
+/* 모달 */
+const modal = document.getElementById("imageModal");
+const modalImg = document.getElementById("modalImage");
+const closeBtn = document.querySelector(".modal-close");
+
+document.querySelectorAll(".portfolio-link").forEach(item => {
+  item.addEventListener("click", function(e){
+    e.preventDefault();
+    modalImg.src = this.getAttribute("data-img");
+    modal.classList.add("active");
+    document.body.style.overflow = "hidden";
+  });
+});
+
+closeBtn.addEventListener("click", function(){
+  modal.classList.remove("active");
+  document.body.style.overflow = "auto";
+});
+
+modal.addEventListener("click", function(e){
+  if(e.target === modal){
+    modal.classList.remove("active");
+    document.body.style.overflow = "auto";
+  }
+});
+</script>
 
 <script src="script.js"></script>
+
 </body>
 </html>

@@ -59,9 +59,13 @@
 
       <!-- 16개 썸네일 (정사각형 + 모달 연결) -->
 
-      <a href="#" class="work-card portfolio-link" data-img="images/portfolio1_big.jpg">
-        <img src="images/portfolio1.jpg" alt="">
-      </a>
+    <a href="#"
+   class="work-card portfolio-link"
+   data-img="images/project1_1.jpg,images/project1_2.jpg,images/project1_3.jpg">
+
+   <img src="images/portfolio1.jpg">
+</a>
+
 
       <a href="#" class="work-card portfolio-link" data-img="images/portfolio2_big.jpg">
         <img src="images/portfolio2.jpg" alt="">
@@ -138,9 +142,8 @@
 <!-- IMAGE MODAL -->
 <div id="imageModal" class="image-modal">
   <span class="modal-close">&times;</span>
-  <div class="modal-content-wrap">
-    <img id="modalImage" class="modal-img">
-  </div>
+ <div class="modal-content-wrap" id="modalContent"></div>
+
 </div>
 
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>

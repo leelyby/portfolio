@@ -70,27 +70,31 @@ modal.addEventListener("click", function(e){
   }
 });
 const modal = document.getElementById("imageModal");
-const modalImg = document.getElementById("modalImage");
-const closeBtn = document.querySelector(".modal-close");
+const modalContent = document.getElementById("modalContent");
 
 document.querySelectorAll(".portfolio-link").forEach(item => {
   item.addEventListener("click", function(e){
     e.preventDefault();
-    const imgSrc = this.getAttribute("data-img");
-    modalImg.src = imgSrc;
+
+    const imgList = this.getAttribute("data-img").split(",");
+
+    modalContent.innerHTML = ""; // 기존 내용 초기화
+
+    imgList.forEach(src => {
+      const img = document.createElement("img");
+      img.src = src.trim();
+      img.classList.add("modal-img");
+      modalContent.appendChild(img);
+    });
+
     modal.classList.add("active");
     document.body.style.overflow = "hidden";
   });
 });
 
-closeBtn.addEventListener("click", function(){
+document.querySelector(".modal-close").addEventListener("click", closeModal);
+
+function closeModal(){
   modal.classList.remove("active");
   document.body.style.overflow = "auto";
-});
-
-modal.addEventListener("click", function(e){
-  if(e.target === modal){
-    modal.classList.remove("active");
-    document.body.style.overflow = "auto";
-  }
-});
+}

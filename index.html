@@ -7,7 +7,6 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
-
 <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 </head>
@@ -35,6 +34,7 @@
 
 <div id="menuOverlay"></div>
 
+<!-- HERO -->
 <section id="home" class="fullscreen">
   <div class="hero-content">
     <h1 class="hero-title">Creative Direction & Visual Design</h1>
@@ -42,6 +42,7 @@
   </div>
 </section>
 
+<!-- ABOUT -->
 <section id="about">
   <div class="inner" data-aos="fade-up">
     <h2>About</h2>
@@ -49,42 +50,92 @@
   </div>
 </section>
 
+<!-- PORTFOLIO -->
 <section id="portfolio">
   <div class="inner">
     <h2 class="center-title" data-aos="fade-up">Selected Works</h2>
 
-<div class="work-grid">
+    <div class="work-grid">
 
-  <a href="#" class="work-card portfolio-link"
-     data-img="images/portfolio1_big.jpg"> <!-- 상세페이지 -->
+      <!-- 16개 썸네일 (정사각형 + 모달 연결) -->
 
-     <img src="images/portfolio1.jpg" class="portfolio-thumb"><!-- 썸네일 -->
-  </a>
+      <a href="#" class="work-card portfolio-link" data-img="images/portfolio1_big.jpg">
+        <img src="images/portfolio1.jpg" alt="">
+      </a>
 
-  <a href="#" class="work-card portfolio-link"
-     data-img="images/portfolio2_big.jpg">
-     <img src="images/portfolio2.jpg" class="portfolio-thumb">
-  </a>
+      <a href="#" class="work-card portfolio-link" data-img="images/portfolio2_big.jpg">
+        <img src="images/portfolio2.jpg" alt="">
+      </a>
 
-  <a href="#" class="work-card portfolio-link"
-     data-img="images/portfolio3_big.jpg">
-     <img src="images/portfolio3.jpg" class="portfolio-thumb">
-  </a>
+      <a href="#" class="work-card portfolio-link" data-img="images/portfolio3_big.jpg">
+        <img src="images/portfolio3.jpg" alt="">
+      </a>
 
-  <!-- 동일 구조로 16개 반복 -->
+      <a href="#" class="work-card portfolio-link" data-img="images/portfolio4_big.jpg">
+        <img src="images/portfolio4.jpg" alt="">
+      </a>
 
-</div>
+      <a href="#" class="work-card portfolio-link" data-img="images/portfolio5_big.jpg">
+        <img src="images/portfolio5.jpg" alt="">
+      </a>
 
+      <a href="#" class="work-card portfolio-link" data-img="images/portfolio6_big.jpg">
+        <img src="images/portfolio6.jpg" alt="">
+      </a>
+
+      <a href="#" class="work-card portfolio-link" data-img="images/portfolio7_big.jpg">
+        <img src="images/portfolio7.jpg" alt="">
+      </a>
+
+      <a href="#" class="work-card portfolio-link" data-img="images/portfolio8_big.jpg">
+        <img src="images/portfolio8.jpg" alt="">
+      </a>
+
+      <a href="#" class="work-card portfolio-link" data-img="images/portfolio9_big.jpg">
+        <img src="images/portfolio9.jpg" alt="">
+      </a>
+
+      <a href="#" class="work-card portfolio-link" data-img="images/portfolio10_big.jpg">
+        <img src="images/portfolio10.jpg" alt="">
+      </a>
+
+      <a href="#" class="work-card portfolio-link" data-img="images/portfolio11_big.jpg">
+        <img src="images/portfolio11.jpg" alt="">
+      </a>
+
+      <a href="#" class="work-card portfolio-link" data-img="images/portfolio12_big.jpg">
+        <img src="images/portfolio12.jpg" alt="">
+      </a>
+
+      <a href="#" class="work-card portfolio-link" data-img="images/portfolio13_big.jpg">
+        <img src="images/portfolio13.jpg" alt="">
+      </a>
+
+      <a href="#" class="work-card portfolio-link" data-img="images/portfolio14_big.jpg">
+        <img src="images/portfolio14.jpg" alt="">
+      </a>
+
+      <a href="#" class="work-card portfolio-link" data-img="images/portfolio15_big.jpg">
+        <img src="images/portfolio15.jpg" alt="">
+      </a>
+
+      <a href="#" class="work-card portfolio-link" data-img="images/portfolio16_big.jpg">
+        <img src="images/portfolio16.jpg" alt="">
+      </a>
+
+    </div>
   </div>
 </section>
 
+<!-- CONTACT -->
 <section id="contact">
   <div class="inner" data-aos="fade-up">
     <h2>Contact</h2>
     <p>hello@email.com</p>
   </div>
 </section>
-<!-- Image Modal -->
+
+<!-- IMAGE MODAL -->
 <div id="imageModal" class="image-modal">
   <span class="modal-close">&times;</span>
   <div class="modal-content-wrap">
@@ -93,6 +144,37 @@
 </div>
 
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+AOS.init();
+
+/* 모달 */
+const modal = document.getElementById("imageModal");
+const modalImg = document.getElementById("modalImage");
+const closeBtn = document.querySelector(".modal-close");
+
+document.querySelectorAll(".portfolio-link").forEach(item => {
+  item.addEventListener("click", function(e){
+    e.preventDefault();
+    modalImg.src = this.getAttribute("data-img");
+    modal.classList.add("active");
+    document.body.style.overflow = "hidden";
+  });
+});
+
+closeBtn.addEventListener("click", function(){
+  modal.classList.remove("active");
+  document.body.style.overflow = "auto";
+});
+
+modal.addEventListener("click", function(e){
+  if(e.target === modal){
+    modal.classList.remove("active");
+    document.body.style.overflow = "auto";
+  }
+});
+</script>
+
 <script src="script.js"></script>
+
 </body>
 </html>

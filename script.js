@@ -10,77 +10,64 @@ gsap.from(".hero-sub",{y:40,opacity:0,duration:1,delay:0.4});
 /* 다크모드 */
 const toggleBtn = document.getElementById("darkToggle");
 
-if(localStorage.getItem("theme")==="dark"){
-  document.body.classList.add("dark");
-}
+if(toggleBtn){
+  if(localStorage.getItem("theme")==="dark"){
+    document.body.classList.add("dark");
+  }
 
-toggleBtn.addEventListener("click",()=>{
-  document.body.classList.toggle("dark");
-  localStorage.setItem("theme",
-    document.body.classList.contains("dark")?"dark":"light"
-  );
-});
+  toggleBtn.addEventListener("click",()=>{
+    document.body.classList.toggle("dark");
+    localStorage.setItem("theme",
+      document.body.classList.contains("dark")?"dark":"light"
+    );
+  });
+}
 
 /* 모바일 메뉴 */
 const menuToggle=document.getElementById("menuToggle");
 const nav=document.getElementById("navMenu");
-const closeMenu=document.getElementById("closeMenu");
+const closeMenuBtn=document.getElementById("closeMenu");
 const overlay=document.getElementById("menuOverlay");
 
-function openMenu(){
-  nav.classList.add("active");
-  overlay.classList.add("active");
+if(menuToggle){
+  menuToggle.addEventListener("click",()=>{
+    nav.classList.add("active");
+    overlay.classList.add("active");
+  });
 }
 
-function closeMenuFunc(){
-  nav.classList.remove("active");
-  overlay.classList.remove("active");
+function closeMenu(){
+  if(nav){
+    nav.classList.remove("active");
+    overlay.classList.remove("active");
+  }
 }
 
-menuToggle.addEventListener("click",openMenu);
-closeMenu.addEventListener("click",closeMenuFunc);
-overlay.addEventListener("click",closeMenuFunc);
+if(closeMenuBtn) closeMenuBtn.addEventListener("click",closeMenu);
+if(overlay) overlay.addEventListener("click",closeMenu);
 
 document.querySelectorAll("#navMenu a").forEach(link=>{
-  link.addEventListener("click",closeMenuFunc);
-});
-const modal = document.getElementById("imageModal");
-const modalImg = document.getElementById("modalImage");
-const closeBtn = document.querySelector(".modal-close");
-
-document.querySelectorAll(".portfolio-link").forEach(item => {
-  item.addEventListener("click", function(e){
-    e.preventDefault();
-    const imgSrc = this.getAttribute("data-img");
-    modalImg.src = imgSrc;
-    modal.classList.add("active");
-    document.body.style.overflow = "hidden";
-  });
+  link.addEventListener("click",closeMenu);
 });
 
-closeBtn.addEventListener("click", function(){
-  modal.classList.remove("active");
-  document.body.style.overflow = "auto";
-});
+/* ===== 모달 (여러 이미지 지원) ===== */
 
-modal.addEventListener("click", function(e){
-  if(e.target === modal){
-    modal.classList.remove("active");
-    document.body.style.overflow = "auto";
-  }
-});
 const modal = document.getElementById("imageModal");
 const modalContent = document.getElementById("modalContent");
+const closeBtn = document.querySelector(".modal-close");
 
-document.querySelectorAll(".portfolio-link").forEach(item => {
-  item.addEventListener("click", function(e){
+document.querySelectorAll(".portfolio-link").forEach(item=>{
+  item.addEventListener("click",function(e){
     e.preventDefault();
 
-    const imgList = this.getAttribute("data-img").split(",");
+    const imgData = this.getAttribute("data-img");
+    if(!imgData) return;
 
-    modalContent.innerHTML = ""; // 기존 내용 초기화
+    const imgList = imgData.split(",");
 
-    imgList.forEach(src => {
+    modalContent.innerHTML = "";
+
+    imgList.forEach(src=>{
       const img = document.createElement("img");
       img.src = src.trim();
       img.classList.add("modal-img");
@@ -88,13 +75,21 @@ document.querySelectorAll(".portfolio-link").forEach(item => {
     });
 
     modal.classList.add("active");
-    document.body.style.overflow = "hidden";
+    document.body.style.overflow="hidden";
   });
 });
 
-document.querySelector(".modal-close").addEventListener("click", closeModal);
-
 function closeModal(){
   modal.classList.remove("active");
-  document.body.style.overflow = "auto";
+  document.body.style.overflow="auto";
+}
+
+if(closeBtn) closeBtn.addEventListener("click",closeModal);
+
+if(modal){
+  modal.addEventListener("click",function(e){
+    if(e.target === modal){
+      closeModal();
+    }
+  });
 }

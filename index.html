@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Premium Portfolio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Premium Portfolio</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 </head>
 
 <body>
@@ -25,7 +26,6 @@
     <div class="close-btn" id="closeMenu">✕</div>
     <ul>
       <li><a href="#home">HOME</a></li>
-      <li><a href="#about">ABOUT</a></li>
       <li><a href="#portfolio">WORK</a></li>
       <li><a href="#contact">CONTACT</a></li>
     </ul>
@@ -42,14 +42,6 @@
   </div>
 </section>
 
-<!-- ABOUT -->
-<section id="about">
-  <div class="inner" data-aos="fade-up">
-    <h2>About</h2>
-    <p>브랜드의 본질을 시각화하는 작업을 합니다.</p>
-  </div>
-</section>
-
 <!-- PORTFOLIO -->
 <section id="portfolio">
   <div class="inner">
@@ -57,75 +49,21 @@
 
     <div class="work-grid">
 
-      <!-- 16개 썸네일 (정사각형 + 모달 연결) -->
+      <!-- 썸네일 1 -->
+      <a href="#"
+         class="work-card portfolio-link"
+         data-img="images/detail1.jpg, images/detail1-2.jpg">
+        <img src="images/portfolio1.jpg" alt="">
+      </a>
 
-    <a href="#"
-   class="work-card portfolio-link"
-   data-img="images/project1_1.jpg,images/project1_2.jpg,images/project1_3.jpg">
-
-   <img src="images/portfolio1.jpg">
-</a>
-
-
-      <a href="#" class="work-card portfolio-link" data-img="images/portfolio2_big.jpg">
+      <!-- 썸네일 2 -->
+      <a href="#"
+         class="work-card portfolio-link"
+         data-img="images/detail2.jpg, images/detail2-2.jpg, images/detail2-3.jpg">
         <img src="images/portfolio2.jpg" alt="">
       </a>
 
-      <a href="#" class="work-card portfolio-link" data-img="images/portfolio3_big.jpg">
-        <img src="images/portfolio3.jpg" alt="">
-      </a>
-
-      <a href="#" class="work-card portfolio-link" data-img="images/portfolio4_big.jpg">
-        <img src="images/portfolio4.jpg" alt="">
-      </a>
-
-      <a href="#" class="work-card portfolio-link" data-img="images/portfolio5_big.jpg">
-        <img src="images/portfolio5.jpg" alt="">
-      </a>
-
-      <a href="#" class="work-card portfolio-link" data-img="images/portfolio6_big.jpg">
-        <img src="images/portfolio6.jpg" alt="">
-      </a>
-
-      <a href="#" class="work-card portfolio-link" data-img="images/portfolio7_big.jpg">
-        <img src="images/portfolio7.jpg" alt="">
-      </a>
-
-      <a href="#" class="work-card portfolio-link" data-img="images/portfolio8_big.jpg">
-        <img src="images/portfolio8.jpg" alt="">
-      </a>
-
-      <a href="#" class="work-card portfolio-link" data-img="images/portfolio9_big.jpg">
-        <img src="images/portfolio9.jpg" alt="">
-      </a>
-
-      <a href="#" class="work-card portfolio-link" data-img="images/portfolio10_big.jpg">
-        <img src="images/portfolio10.jpg" alt="">
-      </a>
-
-      <a href="#" class="work-card portfolio-link" data-img="images/portfolio11_big.jpg">
-        <img src="images/portfolio11.jpg" alt="">
-      </a>
-
-      <a href="#" class="work-card portfolio-link" data-img="images/portfolio12_big.jpg">
-        <img src="images/portfolio12.jpg" alt="">
-      </a>
-
-      <a href="#" class="work-card portfolio-link" data-img="images/portfolio13_big.jpg">
-        <img src="images/portfolio13.jpg" alt="">
-      </a>
-
-      <a href="#" class="work-card portfolio-link" data-img="images/portfolio14_big.jpg">
-        <img src="images/portfolio14.jpg" alt="">
-      </a>
-
-      <a href="#" class="work-card portfolio-link" data-img="images/portfolio15_big.jpg">
-        <img src="images/portfolio15.jpg" alt="">
-      </a>
-
-      <a href="#" class="work-card portfolio-link" data-img="images/portfolio16_big.jpg">
-        <img src="images/portfolio16.jpg" alt="">
-      </a>
+      <!-- 필요하면 계속 추가 -->
 
     </div>
   </div>
@@ -133,50 +71,19 @@
 
 <!-- CONTACT -->
 <section id="contact">
-  <div class="inner" data-aos="fade-up">
+  <div class="inner contact-center" data-aos="fade-up">
     <h2>Contact</h2>
     <p>hello@email.com</p>
   </div>
 </section>
 
-<!-- IMAGE MODAL -->
-<div id="imageModal" class="image-modal">
-  <span class="modal-close">&times;</span>
- <div class="modal-content-wrap" id="modalContent"></div>
-
+<!-- 🔥 모달 (여러 이미지 지원) -->
+<div class="image-modal" id="imageModal">
+  <div class="modal-content-wrap" id="modalContent"></div>
+  <div class="modal-close">✕</div>
 </div>
 
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-<script>
-AOS.init();
-
-/* 모달 */
-const modal = document.getElementById("imageModal");
-const modalImg = document.getElementById("modalImage");
-const closeBtn = document.querySelector(".modal-close");
-
-document.querySelectorAll(".portfolio-link").forEach(item => {
-  item.addEventListener("click", function(e){
-    e.preventDefault();
-    modalImg.src = this.getAttribute("data-img");
-    modal.classList.add("active");
-    document.body.style.overflow = "hidden";
-  });
-});
-
-closeBtn.addEventListener("click", function(){
-  modal.classList.remove("active");
-  document.body.style.overflow = "auto";
-});
-
-modal.addEventListener("click", function(e){
-  if(e.target === modal){
-    modal.classList.remove("active");
-    document.body.style.overflow = "auto";
-  }
-});
-</script>
-
 <script src="script.js"></script>
 
 </body>

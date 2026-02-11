@@ -17,15 +17,15 @@ if(localStorage.getItem("theme")==="dark"){
 toggleBtn.addEventListener("click",()=>{
   document.body.classList.toggle("dark");
   localStorage.setItem("theme",
-    document.body.classList.contains("dark") ? "dark" : "light"
+    document.body.classList.contains("dark")?"dark":"light"
   );
 });
 
 /* 모바일 메뉴 */
-const menuToggle = document.getElementById("menuToggle");
-const nav = document.getElementById("navMenu");
-const closeMenu = document.getElementById("closeMenu");
-const overlay = document.getElementById("menuOverlay");
+const menuToggle=document.getElementById("menuToggle");
+const nav=document.getElementById("navMenu");
+const closeMenu=document.getElementById("closeMenu");
+const overlay=document.getElementById("menuOverlay");
 
 function openMenu(){
   nav.classList.add("active");

@@ -348,3 +348,52 @@ section{
     display:none;
   }
 }
+/* 메뉴 닫기 버튼 */
+.menu-close{
+  display:none;
+}
+
+/* 모바일 */
+@media(max-width:768px){
+
+  #navMenu{
+    position:fixed;
+    top:0;
+    right:-100%;
+    width:75%;
+    height:100vh;
+    background:var(--bg);
+    padding:100px 30px;
+    transition:0.4s;
+    z-index:2001;
+  }
+
+  #navMenu.active{
+    right:0;
+  }
+
+  .menu-close{
+    display:block;
+    position:absolute;
+    top:30px;
+    right:30px;
+    font-size:26px;
+    cursor:pointer;
+  }
+
+  /* 오버레이 */
+  #menuOverlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.4);
+    opacity:0;
+    visibility:hidden;
+    transition:0.3s;
+    z-index:2000;
+  }
+
+  #menuOverlay.active{
+    opacity:1;
+    visibility:visible;
+  }
+}

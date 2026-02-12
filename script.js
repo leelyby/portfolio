@@ -9,20 +9,36 @@ document.addEventListener("DOMContentLoaded", function(){
   }
 
   /* 모바일 메뉴 */
-  const menuToggle = document.getElementById("menuToggle");
-  const navMenu = document.getElementById("navMenu");
+/* 모바일 메뉴 */
+const menuToggle = document.getElementById("menuToggle");
+const navMenu = document.getElementById("navMenu");
+const menuClose = document.getElementById("menuClose");
+const menuOverlay = document.getElementById("menuOverlay");
 
-  if(menuToggle && navMenu){
-    menuToggle.addEventListener("click", ()=>{
-      navMenu.classList.toggle("active");
-    });
+if(menuToggle && navMenu){
 
-    document.querySelectorAll("#navMenu a").forEach(link=>{
-      link.addEventListener("click", ()=>{
-        navMenu.classList.remove("active");
-      });
-    });
+  menuToggle.addEventListener("click", ()=>{
+    navMenu.classList.add("active");
+    if(menuOverlay) menuOverlay.classList.add("active");
+  });
+
+  if(menuClose){
+    menuClose.addEventListener("click", closeMenu);
   }
+
+  if(menuOverlay){
+    menuOverlay.addEventListener("click", closeMenu);
+  }
+
+  document.querySelectorAll("#navMenu a").forEach(link=>{
+    link.addEventListener("click", closeMenu);
+  });
+}
+
+function closeMenu(){
+  navMenu.classList.remove("active");
+  if(menuOverlay) menuOverlay.classList.remove("active");
+}
 
   /* 모달 */
   const modal = document.getElementById("imageModal");

@@ -36,7 +36,8 @@ document.addEventListener("DOMContentLoaded", function(){
       const imgData = this.dataset.img;
       if(!imgData || !modalContent || !modal) return;
 
-      const imgs = imgData.split(",").map(src => src.trim());
+   const imgs = imgData.split(",").map(src => src.trim());
+
 
       modalContent.innerHTML="";
 

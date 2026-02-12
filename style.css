@@ -151,36 +151,41 @@ section{
 
 /* ================= MODAL ================= */
 
+/* 모달 전체 */
 .image-modal{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.95);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  opacity:0;
-  visibility:hidden;
-  transition:0.3s;
-  z-index:2000;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.9);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
 }
 
 .image-modal.active{
-  opacity:1;
-  visibility:visible;
+  display: flex;
 }
 
+/* 스크롤 영역 */
 .modal-content-wrap{
-  max-height:90vh;
-  overflow-y:auto;
-  display:flex;
-  flex-direction:column;
-  gap:20px;
+  width: 100%;
+  max-width: 900px;
+  height: 100vh;            /* 전체 높이 */
+  overflow-y: auto;         /* 세로 스크롤 활성화 */
+  display: flex;
+  flex-direction: column;
+  gap: 0;                   /* 여백 제거 */
 }
 
+/* 모달 이미지 */
 .modal-img{
-  width:100%;
-  max-width:90vw;
+  width: 100%;
+  display: block;
+  margin: 0;
+  padding: 0;
 }
+
+
 
 .modal-close{
   position:absolute;
@@ -199,16 +204,21 @@ section{
     display:block;
   }
 
-  nav{
+   nav{
     position:fixed;
     top:0;
     right:-100%;
     width:70%;
     height:100vh;
     background:var(--bg);
-    padding:120px 40px;
     transition:0.4s;
+    padding:120px 40px;
+    z-index:2000;
+
+    display:flex;            /* 추가 */
+    flex-direction:column;   /* 추가 */
   }
+
 
   nav.active{
     right:0;
@@ -231,4 +241,84 @@ section{
   font-size:64px;
   font-weight:600;
   line-height:1.15;
+}
+/* 1열 전용 블록 */
+.work-single {
+  margin-top: 80px;
+  text-align: center;
+}
+
+.work-label{
+  font-size:40px;          /* 더 크게 */
+  font-weight:900;         /* 완전 볼드 */
+  letter-spacing:6px;
+  margin-bottom:60px;
+  text-align:center;
+  font-family: 'Playfair Display', serif;
+}
+
+.work-single .work-card {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  display: block;
+}
+
+.work-single img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+/* CARD NEWS 섹션 */
+.cardnews-section {
+  padding: 140px 20px;
+  text-align: center;
+}
+
+.cardnews-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 60px;
+  letter-spacing: 6px;
+  margin-bottom: 60px;
+}
+
+.cardnews-section .work-card {
+  max-width: 900px;
+  margin: 0 auto;
+  display: block;
+}
+
+.cardnews-section img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 모바일 */
+@media (max-width:768px){
+  .cardnews-title {
+    font-size: 36px;
+    letter-spacing: 4px;
+  }
+}
+.kakao-box{
+  margin-top:auto;
+  padding-top:40px;
+}
+
+.kakao-btn{
+  display:block;
+  width:100%;
+  text-align:center;
+  padding:14px 0;
+  background:#FEE500;
+  color:#111;
+  font-weight:700;
+  border-radius:8px;
+  text-decoration:none;
+  transition:0.3s;
+}
+
+.kakao-btn:hover{
+  opacity:0.85;
 }

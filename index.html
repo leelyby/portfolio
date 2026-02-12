@@ -3,27 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Premium Portfolio</title>
+  <title>T'D 오늘의디자인</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-
-  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 </head>
-
 <body>
 
 <header>
-  <div class="logo">T'D 오늘의디자인</div>
+  <div class="logo">T'd 오늘의디자인</div>
 
-  <div class="right-menu">
+  <div class="right-area">
     <button id="darkToggle">🌙</button>
     <div class="menu-toggle" id="menuToggle">☰</div>
   </div>
 
   <nav id="navMenu">
-    <div class="close-btn" id="closeMenu">✕</div>
     <ul>
       <li><a href="#home">HOME</a></li>
       <li><a href="#portfolio">WORK</a></li>
@@ -32,38 +27,87 @@
   </nav>
 </header>
 
-<div id="menuOverlay"></div>
-
-<!-- HERO -->
+<!-- HERO 유지 -->
 <section id="home" class="fullscreen">
   <div class="hero-content">
-    <h1 class="hero-title">Creative Direction & Visual Design</h1>
+    <h1 class="hero-title">Creative Direction<br>& Visual Design</h1>
     <p class="hero-sub">Premium Digital Portfolio</p>
   </div>
 </section>
 
+<!-- ABOUT 완전 삭제 -->
+
 <!-- PORTFOLIO -->
 <section id="portfolio">
   <div class="inner">
-    <h2 class="center-title" data-aos="fade-up">Selected Works</h2>
+    <h2 class="section-title">Selected Works</h2>
 
     <div class="work-grid">
 
-      <!-- 썸네일 1 -->
-      <a href="#"
-         class="work-card portfolio-link"
-         data-img="images/detail1.jpg, images/detail1-2.jpg">
-        <img src="images/portfolio1.jpg" alt="">
+      <a href="#" class="work-card portfolio-link"
+         data-img="images/project1_1.jpg,images/project1_2.jpg,images/project1_3.jpg">
+        <img src="images/portfolio1.jpg">
       </a>
 
-      <!-- 썸네일 2 -->
-      <a href="#"
-         class="work-card portfolio-link"
-         data-img="images/detail2.jpg, images/detail2-2.jpg, images/detail2-3.jpg">
-        <img src="images/portfolio2.jpg" alt="">
+       <a href="#" class="work-card portfolio-link"
+         data-img="images/project2_1.jpg,images/project2_2.gif,images/project2_3.jpg,images/project2_4.jpg
+         ,images/project2_5.jpg,images/project2_6.jpg">
+        <img src="images/portfolio2.jpg">
       </a>
 
-      <!-- 필요하면 계속 추가 -->
+       <a href="#" class="work-card portfolio-link"
+         data-img="images/project3_1.jpg,images/project3_2.jpg,images/project3_3.jpg,images/project3_4.jpg">
+        <img src="images/portfolio3.jpg">
+      </a>
+
+       <a href="#" class="work-card portfolio-link"
+         data-img="images/project4_1.jpg,images/project4_2.jpg,images/project4_3.jpg,images/project4_4.jpg">
+        <img src="images/portfolio4.jpg">
+      </a>
+
+       <a href="#" class="work-card portfolio-link"
+         data-img="images/project5_1.jpg,images/project5_2.jpg,images/project5_3.gif,images/project5_4.jpg
+         ,images/project5_5.jpg,images/project5_6.gif">
+        <img src="images/portfolio5.jpg">
+      </a>
+
+       <a href="#" class="work-card portfolio-link"
+         data-img="images/project6_1.jpg,images/project6_2.jpg,images/project6_3.jpg">
+        <img src="images/portfolio6.jpg">
+      </a>
+
+
+       <a href="#" class="work-card portfolio-link"
+         data-img="images/project7_1.jpg">
+        <img src="images/portfolio7.jpg">
+      </a>
+
+
+       <a href="#" class="work-card portfolio-link"
+         data-img="images/project8_1.jpg,images/project8_2.jpg">
+        <img src="images/portfolio8.jpg">
+      </a>
+
+ <a href="#" class="work-card portfolio-link"
+         data-img="images/project9_1.jpg,images/project9_2.jpg">
+        <img src="images/portfolio9.jpg">
+      </a>
+
+       <a href="#" class="work-card portfolio-link"
+         data-img="images/project10_1.jpg">
+        <img src="images/portfolio10.jpg">
+      </a>
+
+    <a href="#" class="work-card portfolio-link"
+         data-img="images/project11_1.jpg">
+        <img src="images/portfolio11.jpg">
+      </a>
+
+          <a href="#" class="work-card portfolio-link"
+         data-img="images/project12_1.jpg,images/project12_2.jpg">
+        <img src="images/portfolio12.jpg">
+      </a>
+
 
     </div>
   </div>
@@ -71,20 +115,22 @@
 
 <!-- CONTACT -->
 <section id="contact">
-  <div class="inner contact-center" data-aos="fade-up">
+  <div class="inner contact-center">
     <h2>Contact</h2>
-    <p>hello@email.com</p>
+        <p>오늘의 디자인</p>
+    <p>대표 : 김정휘</p>
+    <p>Phone : 01023207423</p>
+    <p> E-mail : leelyby@naver.com</p>
+    <p> Kakao ID : hwi44</p>
   </div>
 </section>
 
-<!-- 🔥 모달 (여러 이미지 지원) -->
+<!-- MODAL -->
 <div class="image-modal" id="imageModal">
   <div class="modal-content-wrap" id="modalContent"></div>
-  <div class="modal-close">✕</div>
+  <div class="modal-close" id="modalClose">✕</div>
 </div>
 
-<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 <script src="script.js"></script>
-
 </body>
 </html>

@@ -1,22 +1,12 @@
-/* ===============================
-   ROOT & DARK MODE
-================================= */
-
 :root{
   --bg:#ffffff;
   --text:#111111;
-  --accent:#888888;
 }
 
 body.dark{
   --bg:#111111;
-  --text:#f5f5f5;
-  --accent:#aaaaaa;
+  --text:#ffffff;
 }
-
-/* ===============================
-   RESET
-================================= */
 
 *{
   margin:0;
@@ -28,23 +18,11 @@ body{
   font-family:Arial, sans-serif;
   background:var(--bg);
   color:var(--text);
-  transition:0.3s ease;
+  transition:0.3s;
   overflow-x:hidden;
 }
 
-a{
-  text-decoration:none;
-  color:inherit;
-}
-
-img{
-  display:block;
-  width:100%;
-}
-
-/* ===============================
-   HEADER
-================================= */
+/* ================= HEADER ================= */
 
 header{
   position:fixed;
@@ -52,19 +30,22 @@ header{
   left:0;
   width:100%;
   padding:20px 40px;
+  background:var(--bg);
   display:flex;
   justify-content:space-between;
   align-items:center;
-  background:var(--bg);
   z-index:1000;
 }
 
 .logo{
   font-family:'Playfair Display', serif;
-  font-size:24px;
+  font-size:26px;
+  font-weight:600;
+  letter-spacing:1px;
 }
 
-.right-menu{
+
+.right-area{
   display:flex;
   gap:20px;
   align-items:center;
@@ -84,10 +65,6 @@ header{
   display:none;
 }
 
-/* ===============================
-   NAV
-================================= */
-
 nav ul{
   display:flex;
   gap:40px;
@@ -95,63 +72,12 @@ nav ul{
 }
 
 nav a{
+  text-decoration:none;
   color:var(--text);
+  font-size:14px;
 }
 
-/* ===============================
-   MOBILE MENU
-================================= */
-
-@media(max-width:768px){
-
-  .menu-toggle{display:block;}
-
-  nav{
-    position:fixed;
-    top:0;
-    right:-100%;
-    width:70%;
-    height:100vh;
-    background:var(--bg);
-    transition:0.4s;
-    padding:120px 40px;
-    z-index:2000;
-  }
-
-  nav.active{ right:0; }
-
-  nav ul{
-    flex-direction:column;
-    gap:40px;
-  }
-
-  .close-btn{
-    position:absolute;
-    top:30px;
-    right:30px;
-    font-size:24px;
-    cursor:pointer;
-  }
-
-  #menuOverlay{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,0.4);
-    opacity:0;
-    visibility:hidden;
-    transition:0.3s;
-    z-index:1500;
-  }
-
-  #menuOverlay.active{
-    opacity:1;
-    visibility:visible;
-  }
-}
-
-/* ===============================
-   HERO
-================================= */
+/* ================= HERO ================= */
 
 .fullscreen{
   height:100vh;
@@ -159,26 +85,26 @@ nav a{
   align-items:center;
   justify-content:center;
   text-align:center;
+  padding-top:80px;
 }
 
 .hero-title{
-  font-family:'Playfair Display', serif;
-  font-size:44px;
+  font-size:42px;
+  font-weight:600;
+  line-height:1.3;
 }
 
 .hero-sub{
   margin-top:20px;
-  letter-spacing:3px;
   font-size:14px;
-  color:var(--accent);
+  letter-spacing:2px;
+  opacity:0.7;
 }
 
-/* ===============================
-   SECTION
-================================= */
+/* ================= SECTION ================= */
 
 section{
-  padding:160px 24px;
+  padding:140px 24px;
 }
 
 .inner{
@@ -186,73 +112,54 @@ section{
   margin:0 auto;
 }
 
-.center-title{
+.section-title{
   text-align:center;
   margin-bottom:60px;
+  font-size:26px;
 }
 
-/* ===============================
-   WORK GRID (2열 고정)
-================================= */
+/* ================= GRID ================= */
 
 .work-grid{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:40px;
+  grid-template-columns:repeat(2, 1fr);
+  gap:40;
 }
 
-/* ===============================
-   WORK CARD (정사각형)
-================================= */
-
 .work-card{
-  display:block;
-  position:relative;
-  overflow:hidden;
-  aspect-ratio:1/1;   /* 🔥 정사각형 */
+  margin:40;
 }
 
 .work-card img{
   width:100%;
   height:100%;
   object-fit:cover;
-  transition:0.6s ease;
+  display:block;
 }
 
 .work-card:hover img{
   transform:scale(1.05);
 }
 
-/* ===============================
-   PROJECT DETAIL
-================================= */
+/* ================= CONTACT ================= */
 
-.project-hero img{
-  width:100%;
+.contact-center{
+  text-align:center;
 }
 
-.project-content{
-  padding:120px 24px;
-}
-
-/* ===============================
-   MODAL
-================================= */
+/* ================= MODAL ================= */
 
 .image-modal{
   position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
+  inset:0;
   background:rgba(0,0,0,0.95);
   display:flex;
-  align-items:center;
   justify-content:center;
+  align-items:center;
   opacity:0;
   visibility:hidden;
-  transition:0.4s;
-  z-index:3000;
+  transition:0.3s;
+  z-index:2000;
 }
 
 .image-modal.active{
@@ -263,11 +170,13 @@ section{
 .modal-content-wrap{
   max-height:90vh;
   overflow-y:auto;
+  display:flex;
+  flex-direction:column;
+  gap:20px;
 }
 
 .modal-img{
   width:100%;
-  height:auto;
   max-width:90vw;
 }
 
@@ -275,25 +184,49 @@ section{
   position:absolute;
   top:30px;
   right:40px;
-  font-size:32px;
-  color:#ffffff;
+  font-size:28px;
+  color:#fff;
   cursor:pointer;
 }
 
-/* ===============================
-   RESPONSIVE GRID
-================================= */
+/* ================= MOBILE ================= */
 
 @media(max-width:768px){
+
+  .menu-toggle{
+    display:block;
+  }
+
+  nav{
+    position:fixed;
+    top:0;
+    right:-100%;
+    width:70%;
+    height:100vh;
+    background:var(--bg);
+    padding:120px 40px;
+    transition:0.4s;
+  }
+
+  nav.active{
+    right:0;
+  }
+
+  nav ul{
+    flex-direction:column;
+    gap:40px;
+  }
+
+  /* 모바일도 2열 유지 */
   .work-grid{
-    grid-template-columns:1fr;
+    grid-template-columns:repeat(2,1fr);
+    gap:16px;
   }
 
-  header{
-    padding:16px 20px;
-  }
-
-  section{
-    padding:120px 20px;
-  }
+}
+.hero-title{
+  font-family:'Playfair Display', serif;
+  font-size:64px;
+  font-weight:600;
+  line-height:1.15;
 }

@@ -322,3 +322,29 @@ section{
 .kakao-btn:hover{
   opacity:0.85;
 }
+
+
+/* Contact 카카오 버튼 */
+.contact-kakao{
+  margin-top:40px;
+  text-align:center;
+}
+
+.pc-kakao{
+  display:inline-block;
+  width:280px;
+}
+
+/* PC에서만 보이게 */
+@media(max-width:768px){
+  .contact-kakao{
+    display:none;
+  }
+}
+
+/* 모바일 메뉴 카카오 버튼은 PC에서 숨김 */
+@media(min-width:769px){
+  .kakao-box{
+    display:none;
+  }
+}

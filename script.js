@@ -2,23 +2,27 @@ document.addEventListener("DOMContentLoaded", function(){
 
   /* 다크모드 */
   const darkBtn = document.getElementById("darkToggle");
-  darkBtn.addEventListener("click", ()=>{
-    document.body.classList.toggle("dark");
-  });
+  if(darkBtn){
+    darkBtn.addEventListener("click", ()=>{
+      document.body.classList.toggle("dark");
+    });
+  }
 
   /* 모바일 메뉴 */
   const menuToggle = document.getElementById("menuToggle");
   const navMenu = document.getElementById("navMenu");
 
-  menuToggle.addEventListener("click", ()=>{
-    navMenu.classList.toggle("active");
-  });
-
-  document.querySelectorAll("#navMenu a").forEach(link=>{
-    link.addEventListener("click", ()=>{
-      navMenu.classList.remove("active");
+  if(menuToggle && navMenu){
+    menuToggle.addEventListener("click", ()=>{
+      navMenu.classList.toggle("active");
     });
-  });
+
+    document.querySelectorAll("#navMenu a").forEach(link=>{
+      link.addEventListener("click", ()=>{
+        navMenu.classList.remove("active");
+      });
+    });
+  }
 
   /* 모달 */
   const modal = document.getElementById("imageModal");
@@ -30,15 +34,15 @@ document.addEventListener("DOMContentLoaded", function(){
       e.preventDefault();
 
       const imgData = this.dataset.img;
-      if(!imgData) return;
+      if(!imgData || !modalContent || !modal) return;
 
-      const imgs = imgData.split(",");
+      const imgs = imgData.split(",").map(src => src.trim());
 
       modalContent.innerHTML="";
 
       imgs.forEach(src=>{
         const img = document.createElement("img");
-        img.src = src.trim();
+        img.src = src;
         img.classList.add("modal-img");
         modalContent.appendChild(img);
       });
@@ -48,17 +52,23 @@ document.addEventListener("DOMContentLoaded", function(){
     });
   });
 
-  closeBtn.addEventListener("click", closeModal);
+  if(closeBtn){
+    closeBtn.addEventListener("click", closeModal);
+  }
 
-  modal.addEventListener("click", function(e){
-    if(e.target === modal){
-      closeModal();
-    }
-  });
+  if(modal){
+    modal.addEventListener("click", function(e){
+      if(e.target === modal){
+        closeModal();
+      }
+    });
+  }
 
   function closeModal(){
-    modal.classList.remove("active");
-    document.body.style.overflow="auto";
+    if(modal){
+      modal.classList.remove("active");
+      document.body.style.overflow="auto";
+    }
   }
 
 });

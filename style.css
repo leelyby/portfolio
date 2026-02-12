@@ -242,17 +242,23 @@ section{
   font-weight:600;
   line-height:1.15;
 }
+
+
+
 /* 1열 전용 블록 */
-.work-single {
-  margin-top: 80px;
-  text-align: center;
+
+
+.work-single{
+  margin-top:50px; /* 기존 120 → 60 */
+  text-align:center;
 }
 
+
+
 .work-label{
-  font-size:40px;          /* 더 크게 */
-  font-weight:900;         /* 완전 볼드 */
-  letter-spacing:6px;
-  margin-bottom:60px;
+  font-size:24px;   /* 기존 48 → 24 */
+  font-weight:700;
+  margin-bottom:30px; /* 기존 60 → 30 */
   text-align:center;
   font-family: 'Playfair Display', serif;
 }
@@ -269,6 +275,8 @@ section{
   height: auto;
   display: block;
 }
+
+
 /* CARD NEWS 섹션 */
 .cardnews-section {
   padding: 140px 20px;
@@ -277,9 +285,9 @@ section{
 
 .cardnews-title {
   font-family: 'Playfair Display', serif;
-  font-size: 60px;
+  font-size: 35px;
   letter-spacing: 6px;
-  margin-bottom: 60px;
+  margin-bottom: 30px;
 }
 
 .cardnews-section .work-card {

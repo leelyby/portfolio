@@ -405,3 +405,39 @@ section{
     visibility:visible;
   }
 }
+.work-card{
+  position:relative;
+  overflow:hidden;
+}
+
+.card-overlay{
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:100%;
+  padding:30px 0;
+  background:linear-gradient(
+    to top,
+    rgba(0,0,0,0.85) 0%,
+    rgba(0,0,0,0.65) 30%,
+    rgba(0,0,0,0.0) 100%
+  );
+  display:flex;
+  justify-content:center;
+  align-items:flex-end;
+}
+
+
+.card-overlay span{
+  color:#fff;
+  font-size:18px;
+  font-weight:600;
+  letter-spacing:2px;
+}
+/* 모바일에서 썸네일 텍스트 작게 */
+@media (max-width: 768px) {
+  .card-overlay span {
+    font-size: 13px;   /* 더 줄이고 싶으면 12px */
+  }
+}
+

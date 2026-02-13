@@ -440,4 +440,28 @@ section{
     font-size: 13px;   /* 더 줄이고 싶으면 12px */
   }
 }
+.card-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-overlay span {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+  .card-overlay span {
+    font-size: 14px;
+  }
+}
 

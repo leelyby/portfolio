@@ -434,12 +434,8 @@ section{
   font-weight:600;
   letter-spacing:2px;
 }
-/* 모바일에서 썸네일 텍스트 작게 */
-@media (max-width: 768px) {
-  .card-overlay span {
-    font-size: 13px;   /* 더 줄이고 싶으면 12px */
-  }
-}
+
+
 .card-overlay {
   position: absolute;
   bottom: 0;              /* 아래에 붙이기 */
@@ -457,10 +453,10 @@ section{
   line-height: 1.4;
 }
 
+/* 모바일에서 썸네일 텍스트 작게 */
 @media (max-width: 768px) {
   .card-overlay span {
-    font-size: 11px;
+    font-size: 11px; 
   }
 }
-
 

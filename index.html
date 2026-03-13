@@ -53,7 +53,16 @@
   <div class="inner">
     <h2 class="section-title">Selected Works</h2>
 
-    <div class="work-grid">
+<div class="portfolio-tabs">
+<button class="tab-btn active" data-filter="all">Selected Work</button>
+<button class="tab-btn" data-filter="grid">썸네일</button>
+<button class="tab-btn" data-filter="ppt">PPT</button>
+<button class="tab-btn" data-filter="cardnews">카드뉴스</button>
+<button class="tab-btn" data-filter="composite">합성</button>
+</div>
+
+
+    <div class="work-grid portfolio-section" data-type="grid">
 
       <a href="#" class="work-card portfolio-link"
          data-img="images/project1_1.jpg,images/project1_2.jpg,images/project1_3.jpg">
@@ -220,6 +229,24 @@
   </div>
 
 
+   <!-- 21 그리드 -->
+     <a href="#" class="work-card portfolio-link"
+         data-img="images2/project21_1.jpg,images2/project21_2.jpg">
+        <img src="images2/portfolio21.jpg">
+         <div class="card-overlay">
+    <span>앙투 핸드메이드 코트 기획</span>
+  </div>
+
+
+   <!-- 22 그리드 -->
+     <a href="#" class="work-card portfolio-link"
+         data-img="images2/project22_1.jpg">
+        <img src="images2/portfolio22.jpg">
+         <div class="card-overlay">
+    <span>여성 쇼핑몰 앙투 모음</span>
+  </div>
+
+
 
 
 
@@ -235,7 +262,7 @@
 
 <!-- PPT 포트폴리오 --><!-- PPT 포트폴리오 --><!-- PPT 포트폴리오 --><!-- PPT 포트폴리오 --><!-- PPT 포트폴리오 -->
 
-<div class="work-single">
+<div class="work-single portfolio-section" data-type="ppt">
 
   <p class="work-label">PPT DESIGN</p>
 
@@ -308,9 +335,10 @@
 
 
 <!-- 카드뉴스 --><!-- 카드뉴스 --><!-- 카드뉴스 --><!-- 카드뉴스 --><!-- 카드뉴스 --><!-- 카드뉴스 --><!-- 카드뉴스 -->
-<div class="work-single">
+<div class="work-single portfolio-section" data-type="cardnews">
 
   <p class="work-label">CARD NEWS</p>
+
 
   <a href="#" class="work-card portfolio-link"
      data-img="images2/cardnews_1.jpg">
@@ -320,7 +348,7 @@
 </div>
 
 <!-- 누끼합성인물보정2 -->
-<div class="work-single">
+<div class="work-single portfolio-section" data-type="composite">
 
   <p class="work-label">Background Removal / Image Compositing,Retouching</p>
 
@@ -366,5 +394,31 @@
 </div>
 
 <script src="script.js"></script>
+
+<script>
+const tabs=document.querySelectorAll(".tab-btn");
+const sections=document.querySelectorAll(".portfolio-section");
+
+tabs.forEach(tab=>{
+ tab.addEventListener("click",()=>{
+  tabs.forEach(t=>t.classList.remove("active"));
+  tab.classList.add("active");
+  const filter=tab.dataset.filter;
+
+  sections.forEach(sec=>{
+    if(filter==="all"){
+      sec.style.display="";
+    }else{
+      if(sec.dataset.type===filter){
+        sec.style.display="";
+      }else{
+        sec.style.display="none";
+      }
+    }
+  });
+ });
+});
+</script>
+
 </body>
 </html>

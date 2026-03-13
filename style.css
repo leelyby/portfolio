@@ -515,3 +515,121 @@ section{
   object-fit:cover;
   display:block;
 }
+
+
+/* 포트폴리오 탭 */
+
+.portfolio-tabs{
+
+display:flex;
+
+justify-content:center;
+
+gap:12px;
+
+margin:40px 0 60px;
+
+flex-wrap:wrap;
+
+}
+
+/* 탭 버튼 */
+
+.tab-btn{
+
+padding:10px 22px;
+
+border:1px solid #ddd;
+
+background:#fff;
+
+font-size:13px;
+
+letter-spacing:1px;
+
+cursor:pointer;
+
+transition:all .3s;
+
+}
+
+/* hover */
+
+.tab-btn:hover{
+
+background:#111;
+
+color:#fff;
+
+border-color:#111;
+
+}
+
+/* 선택된 탭 */
+
+.tab-btn.active{
+
+background:#111;
+
+color:#fff;
+
+border-color:#111;
+
+}
+
+/* 카드 애니메이션 */
+
+.work-card{
+
+transition:.35s;
+
+}
+
+/* 숨김 */
+
+.work-card.hide{
+
+opacity:0;
+
+transform:scale(.95);
+
+pointer-events:none;
+
+display:none;
+
+}
+
+/* 표시 */
+
+.work-card.show{
+
+opacity:1;
+
+transform:scale(1);
+
+display:block;
+
+}
+
+.portfolio-tabs{
+display:flex;
+justify-content:center;
+gap:12px;
+margin:40px 0;
+flex-wrap:wrap;
+}
+
+.tab-btn{
+padding:10px 18px;
+border:none;
+background:#eee;
+cursor:pointer;
+font-size:14px;
+border-radius:30px;
+transition:0.3s;
+}
+
+.tab-btn.active{
+background:#111;
+color:#fff;
+}

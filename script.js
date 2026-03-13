@@ -89,3 +89,76 @@ function closeMenu(){
   }
 
 });
+
+
+const tabs=document.querySelectorAll(".tab-btn")
+
+const cards=document.querySelectorAll(".work-card")
+
+tabs.forEach(tab=>{
+
+tab.addEventListener("click",()=>{
+
+tabs.forEach(t=>t.classList.remove("active"))
+
+tab.classList.add("active")
+
+const filter=tab.dataset.filter
+
+cards.forEach(card=>{
+
+if(filter==="all"){
+
+card.classList.remove("hide")
+
+card.classList.add("show")
+
+return
+
+}
+
+if(card.dataset.category===filter){
+
+card.classList.remove("hide")
+
+card.classList.add("show")
+
+}
+
+else{
+
+card.classList.remove("show")
+
+card.classList.add("hide")
+
+}
+
+})
+
+})
+
+})
+
+
+const tabs=document.querySelectorAll(".tab-btn");
+const sections=document.querySelectorAll(".portfolio-section");
+
+tabs.forEach(tab=>{
+ tab.addEventListener("click",()=>{
+  tabs.forEach(t=>t.classList.remove("active"));
+  tab.classList.add("active");
+  const filter=tab.dataset.filter;
+
+  sections.forEach(sec=>{
+    if(filter==="all"){
+      sec.style.display="";
+    }else{
+      if(sec.dataset.type===filter){
+        sec.style.display="";
+      }else{
+        sec.style.display="none";
+      }
+    }
+  });
+ });
+});

@@ -4,421 +4,242 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>T'D 오늘의디자인</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Noto+Sans+KR:wght@100;300;400;700&display=swap" rel="stylesheet">
+  <style>
+    /* 1. 기본 스타일 */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background-color: #000; color: #fff; font-family: 'Noto Sans KR', sans-serif; line-height: 1.6; overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; }
 
-  <link rel="stylesheet" href="style.css">
+    /* 2. Header & Navigation (기존 유지) */
+    header {
+      position: fixed; top: 0; left: 0; width: 100%; height: 80px;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0 40px; z-index: 100;
+    }
+    .logo { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; letter-spacing: 2px; }
+    .right-area { display: flex; align-items: center; gap: 20px; }
+    .menu-toggle { font-size: 1.5rem; cursor: pointer; }
+    
+    #navMenu {
+      position: fixed; top: 0; right: -300px; width: 300px; height: 100%;
+      background: rgba(0,0,0,0.95); z-index: 1000; padding: 80px 40px;
+      transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    #navMenu.active { right: 0; }
+    .menu-close { position: absolute; top: 25px; right: 35px; font-size: 30px; cursor: pointer; }
+    #navMenu ul { list-style: none; margin-top: 50px; }
+    #navMenu ul li { margin-bottom: 30px; }
+    .kakao-box { margin-top: 40px; }
+    .kakao-btn { display: inline-block; padding: 12px 25px; border: 1px solid #fff; font-size: 11px; text-align: center; border-radius: 4px; }
+    #menuOverlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: none; z-index: 999; }
+
+    /* 3. Hero Section (영상 배경 가정) */
+    .hero { position: relative; height: 100vh; width: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    #hero-video { position: absolute; top: 50%; left: 50%; width: 100%; height: 100%; object-fit: cover; transform: translate(-50%, -50%); z-index: 0; filter: brightness(0.4); }
+    .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%); z-index: 1; }
+    .hero-content { text-align: center; z-index: 2; padding: 0 20px; }
+    .hero-content h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 8vw, 4rem); font-weight: 700; letter-spacing: 0.1em; margin-bottom: 20px; }
+    .hero-content p { font-weight: 100; font-size: 1rem; color: #ccc; letter-spacing: 0.2em; }
+
+    /* 4. UI 탭 버튼 스타일 업데이트 (라운드 스퀘어 & 볼드) */
+    .portfolio { padding: 100px 0; background: #000; }
+    .inner { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    .section-title { text-align: center; margin-bottom: 50px; font-weight: 300; letter-spacing: 0.5em; text-transform: uppercase; }
+
+    .portfolio-tabs { display: flex; justify-content: center; gap: 12px; margin-bottom: 50px; flex-wrap: wrap; }
+    .tab-btn { 
+      background: none; 
+      border: 1px solid #333; 
+      color: #888; 
+      cursor: pointer; 
+      font-size: 13px; 
+      font-weight: 700; /* 볼드 처리 */
+      letter-spacing: 1px; 
+      padding: 10px 20px; 
+      border-radius: 8px; /* 라운드 스퀘어 */
+      transition: 0.3s; 
+    }
+    .tab-btn.active { color: #fff; border-color: #fff; background: rgba(255,255,255,0.1); }
+    .tab-btn:hover { border-color: #666; }
+
+    /* 5. Portfolio Grid & Cards */
+    .work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+    .work-card { position: relative; overflow: hidden; background: #111; cursor: pointer; aspect-ratio: 1/1; display: block; }
+    .work-card.ppt-type { aspect-ratio: 16/9; } /* PPT 가로 비율 */
+    .work-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; }
+    .work-card:hover img { transform: scale(1.05); }
+    .card-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; opacity: 0; transition: 0.4s; padding: 20px; text-align: center; }
+    .work-card:hover .card-overlay { opacity: 1; }
+    .card-overlay span { font-size: 12px; font-weight: 300; line-height: 1.6; }
+    .work-label { grid-column: 1 / -1; margin: 60px 0 20px; font-size: 0.9rem; letter-spacing: 3px; color: #555; text-transform: uppercase; border-bottom: 1px solid #222; padding-bottom: 10px; }
+
+    /* 6. Footer 업데이트 (이미지 디자인 반영) */
+    footer { padding: 120px 20px 60px; text-align: center; background: #000; border-top: 1px solid #111; }
+    .footer-premium { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700; margin-bottom: 15px; letter-spacing: 1px; }
+    .footer-sub { color: #666; font-size: 14px; margin-bottom: 40px; font-weight: 300; }
+    .footer-kakao-btn { 
+      display: inline-block; padding: 15px 40px; border: 1px solid #fff; 
+      font-size: 12px; font-weight: 700; margin-bottom: 80px; transition: 0.3s;
+    }
+    .footer-kakao-btn:hover { background: #fff; color: #000; }
+    .footer-info { color: #888; font-size: 13px; line-height: 2; margin-bottom: 30px; }
+    .footer-copy { color: #333; font-size: 11px; letter-spacing: 1px; }
+
+    /* Modal (기존 유지) */
+    .image-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 2000; display: none; justify-content: center; align-items: flex-start; overflow-y: auto; padding: 60px 0; }
+    .modal-content-wrap { max-width: 85%; margin: 0 auto; text-align: center; }
+    .modal-content-wrap img { width: 100%; margin-bottom: 15px; display: block; }
+    .modal-close { position: fixed; top: 25px; right: 35px; font-size: 35px; color: #fff; cursor: pointer; z-index: 2001; }
+
+    @media (max-width: 900px) { .work-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) { .work-grid { grid-template-columns: 1fr; } .footer-premium { font-size: 1.8rem; } }
+  </style>
 </head>
 <body>
 
-<header>
   <div id="menuOverlay"></div>
 
-  <div class="logo">T'd 오늘의디자인</div>
+  <header>
+    <div class="logo">T'd 오늘의디자인</div>
+    <div class="right-area">
+      <button id="darkToggle" style="background:none; border:none; color:#fff; cursor:pointer; font-size:1.2rem;">🌙</button>
+      <div class="menu-toggle" id="menuToggle">☰</div>
+    </div>
+  </header>
 
-  <div class="right-area">
-    <button id="darkToggle">🌙</button>
-    <div class="menu-toggle" id="menuToggle">☰</div>
-  </div>
-
- <nav id="navMenu">
-  <div class="menu-close" id="menuClose">✕</div>
-  <ul>
-    <li><a href="#home">HOME</a></li>
-    <li><a href="#portfolio">WORK</a></li>
-    <li><a href="#contact">CONTACT</a></li>
-  </ul>
-   <!--메뉴탭 모바일 카카오 영역 -->
-    <div class="kakao-box">
-  <a href="https://open.kakao.com/o/sylDoQKh" target="_blank" class="kakao-btn">
-    카카오톡 상담하기
-  </a>
-</div>
-
+  <nav id="navMenu">
+    <div class="menu-close" id="menuClose">✕</div>
+    <ul>
+      <li><a href="#home">HOME</a></li>
+      <li><a href="#portfolio">WORK</a></li>
+      <li><a href="#contact">CONTACT</a></li>
+    </ul>
+    <div class="kakao-box"><a href="https://open.kakao.com/o/sylDoQKh" target="_blank" class="kakao-btn">카카오톡 상담하기</a></div>
   </nav>
-</header>
 
-<!-- HERO 유지 -->
-<section id="home" class="fullscreen">
-  <div class="hero-content">
-    <h1 class="hero-title">Creative Direction<br>& Visual Design</h1>
-    <p class="hero-sub">Premium Digital Portfolio</p>
-    <p class="hero-sub">상세페이지,썸네일,카드뉴스,이벤트페이지,<br>PPT디자인,배너,전단지,포스터등<br>모든것을 디자인합니다.</p>
-  </div>
-</section>
+  <section id="home" class="hero">
+    <video autoplay muted loop playsinline id="hero-video">
+      <source src="images/space.mp4" type="video/mp4">
+    </video>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>Creative Direction</h1>
+      <p>Premium Digital Portfolio</p>
+    </div>
+  </section>
 
-<!-- ABOUT 완전 삭제 -->
+  <section id="portfolio" class="portfolio">
+    <div class="inner">
+      <h2 class="section-title">Selected Works</h2>
 
-<!-- PORTFOLIO -->
-<section id="portfolio">
-  <div class="inner">
-    <h2 class="section-title">Selected Works</h2>
+      <div class="portfolio-tabs">
+        <button class="tab-btn active" data-filter="all">Selected Work</button>
+        <button class="tab-btn" data-filter="grid">썸네일</button>
+        <button class="tab-btn" data-filter="ppt">PPT</button>
+        <button class="tab-btn" data-filter="cardnews">카드뉴스</button>
+        <button class="tab-btn" data-filter="composite">보정/누끼</button>
+      </div>
 
-<div class="portfolio-tabs">
-<button class="tab-btn active" data-filter="all">Selected Work</button>
-<button class="tab-btn" data-filter="grid">썸네일</button>
-<button class="tab-btn" data-filter="ppt">PPT</button>
-<button class="tab-btn" data-filter="cardnews">카드뉴스</button>
-<button class="tab-btn" data-filter="composite">인물/제품 보정,누끼</button>
-</div>
+      <div class="work-grid">
+        <div class="work-label portfolio-section" data-type="grid">THUMBNAIL DESIGN</div>
+        <a href="#" class="work-card portfolio-section" data-type="grid" data-img="images/project1_1.jpg,images/project1_2.jpg,images/project1_3.jpg"><img src="images/portfolio1.jpg"><div class="card-overlay"><span>AI 이미지 제작 기획</span></div></a>
+        <a href="#" class="work-card portfolio-section" data-type="grid" data-img="images/project2_1.jpg,images/project2_2.gif,images/project2_3.jpg,images/project2_4.jpg,images/project2_5.jpg,images/project2_6.gif"><img src="images/portfolio2.jpg"></a>
+        <a href="#" class="work-card portfolio-section" data-type="grid" data-img="images/project3_1.jpg,images/project3_2.jpg,images/project3_3.jpg,images/project3_4.jpg"><img src="images/portfolio3.jpg"></a>
+        <a href="#" class="work-card portfolio-section" data-type="grid" data-img="images2/project4_1.jpg,images2/project4_2.jpg,images2/project4_3.jpg,images2/project4_4.jpg"><img src="images/portfolio4.jpg"></a>
+        <a href="#" class="work-card portfolio-section" data-type="grid" data-img="images2/project5_1.jpg,images2/project5_2.jpg,images2/project5_3.gif,images2/project5_4.jpg,images2/project5_5.jpg,images2/project5_6.gif"><img src="images/portfolio5.jpg"></a>
+        <a href="#" class="work-card portfolio-section" data-type="grid" data-img="images2/project6_1.jpg,images2/project6_2.jpg,images2/project6_3.jpg"><img src="images/portfolio6.jpg"></a>
+        <a href="#" class="work-card portfolio-section" data-type="grid" data-img="images2/project7_1.jpg"><img src="images/portfolio7.jpg"></a>
+        <a href="#" class="work-card portfolio-section" data-type="grid" data-img="images2/project8_1.jpg,images2/project8_2.jpg"><img src="images/portfolio8.jpg"></a>
+        <a href="#" class="work-card portfolio-section" data-type="grid" data-img="images2/project9_1.jpg,images2/project9_2.jpg"><img src="images/portfolio9.jpg"></a>
+        <a href="#" class="work-card portfolio-section" data-type="grid" data-img="images2/project10_1.jpg"><img src="images/portfolio10.jpg"></a>
+        <a href="#" class="work-card portfolio-section" data-type="grid" data-img="images2/project11_1.jpg"><img src="images/portfolio11.jpg"></a>
+        <a href="#" class="work-card portfolio-section" data-type="grid" data-img="images2/project12_1.jpg,images2/project12_2.jpg"><img src="images/portfolio12.jpg"></a>
+        <a href="#" class="work-card portfolio-section" data-type="grid" data-img="images2/project13_1.jpg"><img src="images2/portfolio13.jpg"></a>
+        <a href="#" class="work-card portfolio-section" data-type="grid" data-img="images2/project14_1.jpg,images2/project14_2.gif,images2/project14_3.jpg,images2/project14_4.jpg"><img src="images2/portfolio14.jpg"></a>
+        <a href="#" class="work-card portfolio-section" data-type="grid" data-img="images2/project15_1.jpg"><img src="images2/portfolio15.jpg"></a>
+        <a href="#" class="work-card portfolio-section" data-type="grid" data-img="images2/project16_1.jpg,images2/project16_2.jpg"><img src="images2/portfolio16.jpg"></a>
+        <a href="#" class="work-card portfolio-section" data-type="grid" data-img="images2/project17_1.jpg,images2/project17_2.gif,images2/project17_3.gif,images2/project17_4.jpg"><img src="images2/portfolio17.jpg"></a>
+        <a href="#" class="work-card portfolio-section" data-type="grid" data-img="images2/project18_1.jpg,images2/project18_2.jpg,images2/project18_3.jpg"><img src="images2/portfolio18.jpg"></a>
+        <a href="#" class="work-card portfolio-section" data-type="grid" data-img="images2/project19_1.jpg"><img src="images2/portfolio19.jpg"></a>
+        <a href="#" class="work-card portfolio-section" data-type="grid" data-img="images2/project20_1.jpg"><img src="images2/portfolio20.jpg"></a>
+        <a href="#" class="work-card portfolio-section" data-type="grid" data-img="images2/project21_1.jpg,images2/project21_2.jpg"><img src="images2/portfolio21.jpg"></a>
+        <a href="#" class="work-card portfolio-section" data-type="grid" data-img="images2/project22_1.jpg"><img src="images2/portfolio22.jpg"></a>
 
+        <div class="work-label portfolio-section" data-type="ppt">PPT PRESENTATION</div>
+        <a href="files/portfolio-ppt.pdf" target="_blank" class="work-card ppt-type portfolio-section" data-type="ppt"><img src="images/ppt_thumb.jpg"></a>
+        <a href="files/portfolio-ppt2.pdf" target="_blank" class="work-card ppt-type portfolio-section" data-type="ppt"><img src="images/ppt_thumb2.jpg"></a>
+        <a href="files/portfolio-ppt3.pdf" target="_blank" class="work-card ppt-type portfolio-section" data-type="ppt"><img src="images/ppt_thumb3.jpg"></a>
+        <a href="files/portfolio-ppt4.pdf" target="_blank" class="work-card ppt-type portfolio-section" data-type="ppt"><img src="images/ppt_thumb4.jpg"></a>
+        <a href="files/portfolio-ppt5.pdf" target="_blank" class="work-card ppt-type portfolio-section" data-type="ppt"><img src="images/ppt_thumb5.jpg"></a>
+        <a href="files/portfolio-ppt6.pdf" target="_blank" class="work-card ppt-type portfolio-section" data-type="ppt"><img src="images/ppt_thumb6.jpg"></a>
 
-    <div class="work-grid portfolio-section" data-type="grid">
-
-      <a href="#" class="work-card portfolio-link"
-         data-img="images/project1_1.jpg,images/project1_2.jpg,images/project1_3.jpg">
-        <img src="images/portfolio1.jpg">
-         <div class="card-overlay">
-    <span>AI 이미지 제작<br>기획 작업분</span>
-  </div>
-      </a>
-
-       <a href="#" class="work-card portfolio-link"
-         data-img="images/project2_1.jpg,images/project2_2.gif,images/project2_3.jpg,images/project2_4.jpg,images/project2_5.jpg,images/project2_6.jpg">
-        <img src="images/portfolio2.jpg">
-      </a>
-
-       <a href="#" class="work-card portfolio-link"
-         data-img="images/project3_1.jpg,images/project3_2.jpg,images/project3_3.jpg,images/project3_4.jpg">
-        <img src="images/portfolio3.jpg">
-            <div class="card-overlay">
-    <span>AI 이미지 제작<br>기획 작업분</span>
-  </div>
-      </a>
-
-       <a href="#" class="work-card portfolio-link"
-         data-img="images2/project4_1.jpg,images2/project4_2.jpg,images2/project4_3.jpg,images2/project4_4.jpg">
-        <img src="images/portfolio4.jpg">
-            <div class="card-overlay">
-    <span>AI 이미지 제작<br>기획 작업분</span>
-  </div>
-      </a>
-
-       <a href="#" class="work-card portfolio-link"
-         data-img="images2/project5_1.jpg,images2/project5_2.jpg,images2/project5_3.gif,images2/project5_4.jpg,images2/project5_5.jpg,images2/project5_6.gif">
-        <img src="images/portfolio5.jpg">
-      </a>
-
-       <a href="#" class="work-card portfolio-link"
-         data-img="images2/project6_1.jpg,images2/project6_2.jpg,images2/project6_3.jpg">
-        <img src="images/portfolio6.jpg">
-            <div class="card-overlay">
-    <span>AI 이미지 제작<br>기획 작업분</span>
-  </div>
-      </a>
-
-<!-- 애사비 -->
-       <a href="#" class="work-card portfolio-link"
-         data-img="images2/project7_1.jpg">
-        <img src="images/portfolio7.jpg">
-            <div class="card-overlay">
-    <span>AI 이미지 제작<br>기획 작업분</span>
-  </div>
-      </a>
-
-<!-- 쿠팡상세 번역및 디자인 -->
-       <a href="#" class="work-card portfolio-link"
-         data-img="images2/project8_1.jpg,images2/project8_2.jpg">
-        <img src="images/portfolio8.jpg">
-            <div class="card-overlay">
-    <span>쿠팡상세<br>번역 및 디자인</span>
-  </div>
-      </a>
-
- <a href="#" class="work-card portfolio-link"
-         data-img="images2/project9_1.jpg,images2/project9_2.jpg">
-        <img src="images/portfolio9.jpg">
-           <div class="card-overlay">
-    <span>AI 이미지 제작<br>기획 작업분</span>
-  </div>
-      </a>
-
-       <a href="#" class="work-card portfolio-link"
-         data-img="images2/project10_1.jpg">
-        <img src="images/portfolio10.jpg">
-      </a>
-
-    <a href="#" class="work-card portfolio-link"
-         data-img="images2/project11_1.jpg">
-        <img src="images/portfolio11.jpg">
-           <div class="card-overlay">
-    <span>AI 이미지 제작<br>기획 작업분</span>
-  </div>
-      </a>
-
-          <a href="#" class="work-card portfolio-link"
-         data-img="images2/project12_1.jpg,images2/project12_2.jpg">
-        <img src="images/portfolio12.jpg">
-         <div class="card-overlay">
-    <span>쿠팡상세<br> 번역 및 디자인</span>
-  </div>
-      </a>
-
-
-       <a href="#" class="work-card portfolio-link"
-         data-img="images2/project13_1.jpg">
-        <img src="images2/portfolio13.jpg">
-           <div class="card-overlay">
-    <span>AI 이미지 제작,기획 작업분<br>미리캔버스</span>
-  </div>
-      </a>
-
-   <!-- 14 그리드 -->
-       <a href="#" class="work-card portfolio-link"
-         data-img="images2/project14_1.jpg,images2/project14_2.gif,images2/project14_3.jpg,images2/project14_4.jpg">
-        <img src="images2/portfolio14.jpg">
+        <div class="work-label portfolio-section" data-type="cardnews">CARD NEWS</div>
+        <a href="#" class="work-card portfolio-section" data-type="cardnews" data-img="images2/cardnews_1.jpg"><img src="images/cardnews_thumb.jpg"></a>
         
-      </a>
-
-
-
-   <!-- 15 그리드 -->
-     <a href="#" class="work-card portfolio-link"
-         data-img="images2/project15_1.jpg">
-        <img src="images2/portfolio15.jpg">
-        
-   <div class="card-overlay">
-    <span>AI 이미지 제작,기획 작업분<br>쿠팡상세,미리캔버스</span>
-  </div>
-
-      </a>
-
- 
-
-   <!-- 16 그리드 -->
-     <a href="#" class="work-card portfolio-link"
-         data-img="images2/project16_1.jpg,images2/project16_2.jpg">
-        <img src="images2/portfolio16.jpg">
-         <div class="card-overlay">
-    <span>AI 이미지 제작,기획 작업분</span>
-  </div>
-
-  <!-- 17 그리드 -->
-     <a href="#" class="work-card portfolio-link"
-         data-img="images2/project17_1.jpg,images2/project17_2.gif,images2/project17_3.gif,images2/project17_4.jpg">
-        <img src="images2/portfolio17.jpg">
-         <div class="card-overlay">
-    <span>쿠팡상세,기획 작업분<br>미리캔버스</span>
-  </div>
-
-
-
-    <!-- 18 그리드 -->
-     <a href="#" class="work-card portfolio-link"
-         data-img="images2/project18_1.jpg,images2/project18_2.jpg,images2/project18_3.jpg">
-        <img src="images2/portfolio18.jpg">
-         <div class="card-overlay">
-    <span>AI 이미지 제작,기획 작업분</span>
-  </div>
-
- <!-- 19 그리드 -->
-     <a href="#" class="work-card portfolio-link"
-         data-img="images2/project19_1.jpg">
-        <img src="images2/portfolio19.jpg">
-         <div class="card-overlay">
-    <span>AI 이미지 제작,기획 작업분</span>
-  </div>
-
-
-
-   <!-- 20 그리드 -->
-     <a href="#" class="work-card portfolio-link"
-         data-img="images2/project20_1.jpg">
-        <img src="images2/portfolio20.jpg">
-         <div class="card-overlay">
-    <span>AI 이미지 제작,기획 작업분</span>
-  </div>
-
-
-   <!-- 21 그리드 -->
-     <a href="#" class="work-card portfolio-link"
-         data-img="images2/project21_1.jpg,images2/project21_2.jpg">
-        <img src="images2/portfolio21.jpg">
-         <div class="card-overlay">
-    <span>앙투 핸드메이드 코트 기획</span>
-  </div>
-
-
-   <!-- 22 그리드 -->
-     <a href="#" class="work-card portfolio-link"
-         data-img="images2/project22_1.jpg">
-        <img src="images2/portfolio22.jpg">
-         <div class="card-overlay">
-    <span>여성 쇼핑몰 앙투 모음</span>
-  </div>
-
-
-
-
-
-      </a>
-
-   </div>
-   </div>
-
-   <!-- work-grid 끝 -->
-
-
-
-
-<!-- PPT 포트폴리오 --><!-- PPT 포트폴리오 --><!-- PPT 포트폴리오 --><!-- PPT 포트폴리오 --><!-- PPT 포트폴리오 -->
-
-<div class="work-single portfolio-section" data-type="ppt">
-
-  <p class="work-label">PPT DESIGN</p>
-
-
-  <!-- PPT 포트폴리오 1 -->
-  <a href="files/portfolio-ppt.pdf" target="_blank" class="work-card ppt-card">
-
-    <img src="images/ppt_thumb.jpg" alt="PPT Portfolio Thumbnail">
-
-    <div class="card-overlay">
-      <span>PPT 디자인<br>프레젠테이션 작업</span>
+        <div class="work-label portfolio-section" data-type="composite">RETOUCHING & COMPOSITING</div>
+        <a href="#" class="work-card portfolio-section" data-type="composite" data-img="images2/BackgroundRemoval1.jpg"><img src="images2/BackgroundRemoval.jpg"></a>
+      </div>
     </div>
+  </section>
 
-<!-- PPT 포트폴리오 2 -->
-     <a href="files/portfolio-ppt2.pdf" target="_blank" class="work-card ppt-card">
+  <footer id="contact">
+    <div class="footer-premium">Premium Presentation</div>
+    <div class="footer-sub">기획부터 디자인까지, 비즈니스의 성공을 돕는 <br>디자인을 경험하세요.</div>
+    
+    <a href="https://open.kakao.com/o/sylDoQKh" target="_blank" class="footer-kakao-btn">
+      카카오톡 상담하기
+    </a>
 
-    <img src="images/ppt_thumb2.jpg" alt="PPT Portfolio Thumbnail_2">
-
-    <div class="card-overlay">
-      <span>PPT 디자인<br>스마트팜 사업제안서</span>
+    <div class="footer-info">
+      오,디 / 오늘의 디자인<br>
+      대표 : 김정휘 | Phone : 010.2320.7423<br>
+      E-mail : leelyby@naver.com
     </div>
+    <div class="footer-copy">© 2024 T'D DESIGN. ALL RIGHTS RESERVED.</div>
+  </footer>
 
-<!-- PPT 포트폴리오 3 -->
-  <a href="files/portfolio-ppt3.pdf" target="_blank" class="work-card ppt-card">
-
-    <img src="images/ppt_thumb3.jpg" alt="PPT Portfolio Thumbnail_3">
-
-    <div class="card-overlay">
-      <span>PPT 디자인<br>창원시 펫 라이프 활성화 제안서</span>
-    </div>
-
-<!-- PPT 포트폴리오 4 -->
-  <a href="files/portfolio-ppt4.pdf" target="_blank" class="work-card ppt-card">
-
-    <img src="images/ppt_thumb4.jpg" alt="PPT Portfolio Thumbnail_4">
-
-    <div class="card-overlay">
-      <span>PPT 디자인<br>과일 유통업 - 신선한 녀석들</span>
-    </div>
-
-
-
-    <!-- PPT 포트폴리오 5 -->
-  <a href="files/portfolio-ppt5.pdf" target="_blank" class="work-card ppt-card">
-
-    <img src="images/ppt_thumb5.jpg" alt="PPT Portfolio Thumbnail_5">
-
-    <div class="card-overlay">
-      <span>PPT 디자인<br>맘모스커피 프랜차이즈 사업제안서</span>
-    </div>
-
-
-     <!-- PPT 포트폴리오 5 -->
-  <a href="files/portfolio-ppt6.pdf" target="_blank" class="work-card ppt-card">
-
-    <img src="images/ppt_thumb6.jpg" alt="PPT Portfolio Thumbnail_6">
-
-    <div class="card-overlay">
-      <span>PPT 디자인<br>케어링크 스마트 헬스케어 사업제안서</span>
-    </div>
-
-
-  </a>
-
-</div>
-
-</div>
-
-
-
-
-<!-- 카드뉴스 --><!-- 카드뉴스 --><!-- 카드뉴스 --><!-- 카드뉴스 --><!-- 카드뉴스 --><!-- 카드뉴스 --><!-- 카드뉴스 -->
-<div class="work-single portfolio-section" data-type="cardnews">
-
-  <p class="work-label">CARD NEWS</p>
-
-
-  <a href="#" class="work-card portfolio-link"
-     data-img="images2/cardnews_1.jpg">
-    <img src="images/cardnews_thumb.jpg">
-  </a>
-
-</div>
-
-<!-- 누끼합성인물보정2 -->
-<div class="work-single portfolio-section" data-type="composite">
-
-  <p class="work-label">Background Removal / Image Compositing,Retouching</p>
-
-  <a href="#" class="work-card portfolio-link"
-     data-img="images2/BackgroundRemoval1.jpg">
-    <img src="images2/BackgroundRemoval.jpg">
-
-  </a>
-
-</div>
-
-
-</div> <!-- inner 끝 -->
-</section>
-
-
+  <div class="image-modal" id="imageModal">
+    <div class="modal-close" id="modalClose">✕</div>
+    <div class="modal-content-wrap" id="modalContent"></div>
   </div>
-</section>
 
-<!-- CONTACT -->
-<section id="contact">
-  <div class="inner contact-center">
-    <h2>CONTACT</h2>
-    <br>
-        <p>오,디 / 오늘의 디자인</p>
-    <p>대표 : 김정휘</p>
-    <p>Phone : 010.2320.7423</p>
-    <p> E-mail : leelyby@naver.com</p>
-    <p>☰(메뉴탭) ▶ Kakao 상담하기로 문의 주세요!</p>
-  </div>
-  <div class="contact-kakao">
-  <a href="https://open.kakao.com/o/sylDoQKh" target="_blank" class="kakao-btn pc-kakao">
-    카카오톡 상담하기
-  </a>
-</div>
+  <script>
+    // 메뉴 제어
+    const navMenu = document.getElementById('navMenu');
+    const menuOverlay = document.getElementById('menuOverlay');
+    document.getElementById('menuToggle').onclick = () => { navMenu.classList.add('active'); menuOverlay.style.display = 'block'; };
+    const closeMenu = () => { navMenu.classList.remove('active'); menuOverlay.style.display = 'none'; };
+    document.getElementById('menuClose').onclick = closeMenu; menuOverlay.onclick = closeMenu;
 
-</section>
+    // 필터 제어
+    const tabs = document.querySelectorAll(".tab-btn");
+    const pSections = document.querySelectorAll(".portfolio-section");
+    tabs.forEach(tab => {
+      tab.onclick = () => {
+        tabs.forEach(t => t.classList.remove("active"));
+        tab.classList.add("active");
+        const filter = tab.dataset.filter;
+        pSections.forEach(sec => { sec.style.display = (filter === "all" || sec.dataset.type === filter) ? "block" : "none"; });
+      };
+    });
 
-<!-- MODAL -->
-<div class="image-modal" id="imageModal">
-  <div class="modal-content-wrap" id="modalContent"></div>
-  <div class="modal-close" id="modalClose">✕</div>
-</div>
-
-<script src="script.js"></script>
-
-<script>
-const tabs=document.querySelectorAll(".tab-btn");
-const sections=document.querySelectorAll(".portfolio-section");
-
-tabs.forEach(tab=>{
- tab.addEventListener("click",()=>{
-  tabs.forEach(t=>t.classList.remove("active"));
-  tab.classList.add("active");
-  const filter=tab.dataset.filter;
-
-  sections.forEach(sec=>{
-    if(filter==="all"){
-      sec.style.display="";
-    }else{
-      if(sec.dataset.type===filter){
-        sec.style.display="";
-      }else{
-        sec.style.display="none";
-      }
-    }
-  });
- });
-});
-</script>
-
+    // 모달 제어
+    const modal = document.getElementById("imageModal");
+    const modalContent = document.getElementById("modalContent");
+    document.querySelectorAll(".work-card").forEach(card => {
+      card.onclick = (e) => {
+        if(card.getAttribute('target') === '_blank') return;
+        e.preventDefault();
+        const imgs = card.dataset.img;
+        if(imgs) {
+          modalContent.innerHTML = "";
+          imgs.split(",").forEach(src => { const img = document.createElement("img"); img.src = src.trim(); modalContent.appendChild(img); });
+          modal.style.display = "flex"; document.body.style.overflow = "hidden";
+        }
+      };
+    });
+    document.getElementById("modalClose").onclick = () => { modal.style.display = "none"; document.body.style.overflow = "auto"; };
+  </script>
 </body>
 </html>

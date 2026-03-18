@@ -11,7 +11,7 @@
     body { background-color: #000; color: #fff; font-family: 'Noto Sans KR', sans-serif; line-height: 1.6; overflow-x: hidden; }
     a { text-decoration: none; color: inherit; }
 
-    /* 2. Header & Navigation (기존 유지) */
+    /* 2. Header & Navigation */
     header {
       position: fixed; top: 0; left: 0; width: 100%; height: 80px;
       display: flex; justify-content: space-between; align-items: center;
@@ -34,7 +34,7 @@
     .kakao-btn { display: inline-block; padding: 12px 25px; border: 1px solid #fff; font-size: 11px; text-align: center; border-radius: 4px; }
     #menuOverlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: none; z-index: 999; }
 
-    /* 3. Hero Section (영상 배경 가정) */
+    /* 3. Hero Section */
     .hero { position: relative; height: 100vh; width: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden; }
     #hero-video { position: absolute; top: 50%; left: 50%; width: 100%; height: 100%; object-fit: cover; transform: translate(-50%, -50%); z-index: 0; filter: brightness(0.4); }
     .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%); z-index: 1; }
@@ -42,7 +42,7 @@
     .hero-content h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 8vw, 4rem); font-weight: 700; letter-spacing: 0.1em; margin-bottom: 20px; }
     .hero-content p { font-weight: 100; font-size: 1rem; color: #ccc; letter-spacing: 0.2em; }
 
-    /* 4. UI 탭 버튼 스타일 업데이트 (라운드 스퀘어 & 볼드) */
+    /* 4. UI 탭 버튼 스타일 */
     .portfolio { padding: 100px 0; background: #000; }
     .inner { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
     .section-title { text-align: center; margin-bottom: 50px; font-weight: 300; letter-spacing: 0.5em; text-transform: uppercase; }
@@ -54,10 +54,10 @@
       color: #888; 
       cursor: pointer; 
       font-size: 13px; 
-      font-weight: 700; /* 볼드 처리 */
+      font-weight: 700; 
       letter-spacing: 1px; 
       padding: 10px 20px; 
-      border-radius: 8px; /* 라운드 스퀘어 */
+      border-radius: 8px; 
       transition: 0.3s; 
     }
     .tab-btn.active { color: #fff; border-color: #fff; background: rgba(255,255,255,0.1); }
@@ -66,7 +66,7 @@
     /* 5. Portfolio Grid & Cards */
     .work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
     .work-card { position: relative; overflow: hidden; background: #111; cursor: pointer; aspect-ratio: 1/1; display: block; }
-    .work-card.ppt-type { aspect-ratio: 16/9; } /* PPT 가로 비율 */
+    .work-card.ppt-type { aspect-ratio: 16/9; } 
     .work-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; }
     .work-card:hover img { transform: scale(1.05); }
     .card-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; opacity: 0; transition: 0.4s; padding: 20px; text-align: center; }
@@ -74,7 +74,7 @@
     .card-overlay span { font-size: 12px; font-weight: 300; line-height: 1.6; }
     .work-label { grid-column: 1 / -1; margin: 60px 0 20px; font-size: 0.9rem; letter-spacing: 3px; color: #555; text-transform: uppercase; border-bottom: 1px solid #222; padding-bottom: 10px; }
 
-    /* 6. Footer 업데이트 (이미지 디자인 반영) */
+    /* 6. Footer */
     footer { padding: 120px 20px 60px; text-align: center; background: #000; border-top: 1px solid #111; }
     .footer-premium { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700; margin-bottom: 15px; letter-spacing: 1px; }
     .footer-sub { color: #666; font-size: 14px; margin-bottom: 40px; font-weight: 300; }
@@ -86,11 +86,29 @@
     .footer-info { color: #888; font-size: 13px; line-height: 2; margin-bottom: 30px; }
     .footer-copy { color: #333; font-size: 11px; letter-spacing: 1px; }
 
-    /* Modal (기존 유지) */
-    .image-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 2000; display: none; justify-content: center; align-items: flex-start; overflow-y: auto; padding: 60px 0; }
-    .modal-content-wrap { max-width: 85%; margin: 0 auto; text-align: center; }
-    .modal-content-wrap img { width: 100%; margin-bottom: 15px; display: block; }
-    .modal-close { position: fixed; top: 25px; right: 35px; font-size: 35px; color: #fff; cursor: pointer; z-index: 2001; }
+    /* 7. Modal (너비 1000px 고정 업데이트) */
+    .image-modal { 
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+      background: rgba(0,0,0,0.98); z-index: 2000; 
+      display: none; justify-content: center; align-items: flex-start; 
+      overflow-y: auto; padding: 0; 
+    }
+    .modal-content-wrap { 
+      width: 1000px; /* 고정 너비 설정 */
+      max-width: 95%; /* 모바일 등 작은 화면에서는 화면에 맞게 조절 */
+      margin: 0 auto; 
+      display: flex; flex-direction: column; 
+    }
+    .modal-content-wrap img { 
+      width: 100%; /* 부모(1000px)에 꽉 차게 */
+      display: block; 
+      margin: 0; padding: 0; 
+    }
+    .modal-close { 
+      position: fixed; top: 25px; right: 35px; 
+      font-size: 35px; color: #fff; cursor: pointer; 
+      z-index: 2001; text-shadow: 0 0 10px rgba(0,0,0,0.5); 
+    }
 
     @media (max-width: 900px) { .work-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 600px) { .work-grid { grid-template-columns: 1fr; } .footer-premium { font-size: 1.8rem; } }
@@ -186,11 +204,7 @@
   <footer id="contact">
     <div class="footer-premium">Premium Presentation</div>
     <div class="footer-sub">기획부터 디자인까지, 비즈니스의 성공을 돕는 <br>디자인을 경험하세요.</div>
-    
-    <a href="https://open.kakao.com/o/sylDoQKh" target="_blank" class="footer-kakao-btn">
-      카카오톡 상담하기
-    </a>
-
+    <a href="https://open.kakao.com/o/sylDoQKh" target="_blank" class="footer-kakao-btn">카카오톡 상담하기</a>
     <div class="footer-info">
       오,디 / 오늘의 디자인<br>
       대표 : 김정휘 | Phone : 010.2320.7423<br>
@@ -205,14 +219,13 @@
   </div>
 
   <script>
-    // 메뉴 제어
+    // 메뉴 및 필터 스크립트 (기존 동일)
     const navMenu = document.getElementById('navMenu');
     const menuOverlay = document.getElementById('menuOverlay');
     document.getElementById('menuToggle').onclick = () => { navMenu.classList.add('active'); menuOverlay.style.display = 'block'; };
     const closeMenu = () => { navMenu.classList.remove('active'); menuOverlay.style.display = 'none'; };
     document.getElementById('menuClose').onclick = closeMenu; menuOverlay.onclick = closeMenu;
 
-    // 필터 제어
     const tabs = document.querySelectorAll(".tab-btn");
     const pSections = document.querySelectorAll(".portfolio-section");
     tabs.forEach(tab => {
@@ -234,12 +247,18 @@
         const imgs = card.dataset.img;
         if(imgs) {
           modalContent.innerHTML = "";
-          imgs.split(",").forEach(src => { const img = document.createElement("img"); img.src = src.trim(); modalContent.appendChild(img); });
+          imgs.split(",").forEach(src => { 
+            const img = document.createElement("img"); 
+            img.src = src.trim(); 
+            modalContent.appendChild(img); 
+          });
           modal.style.display = "flex"; document.body.style.overflow = "hidden";
+          modal.scrollTop = 0;
         }
       };
     });
     document.getElementById("modalClose").onclick = () => { modal.style.display = "none"; document.body.style.overflow = "auto"; };
+    modal.onclick = (e) => { if (e.target === modal) { modal.style.display = "none"; document.body.style.overflow = "auto"; } };
   </script>
 </body>
 </html>
